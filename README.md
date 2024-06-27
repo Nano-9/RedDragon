@@ -28,7 +28,7 @@
     ---------
     pip install -r requirements.txt
     ---------
-    python3 Scan.py
+    python3 reddragon.py
 
 
 # PROXIMAS ATUALIZAÇÕES APARECERÃO AQUI ABAIXO:
