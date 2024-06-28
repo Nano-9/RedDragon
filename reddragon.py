@@ -226,7 +226,9 @@ if __name__ == "__main__":
 			BanerScan()
 			print("\033[1;31m[*]\033[m\033[1m VULNERABILIDADES QUE O SCRIPT IRÁ EXPLORAR:\033[m")
 			print("""
-\033[1;31m[*]\033[m\033[1m - SQL\033[m
+\033[1m[ VERDE JÁ FOI IMPLEMENTADO ]\033[m
+
+\033[1;32m[*]\033[m\033[1m - SQL\033[m
 \033[1;31m[*]\033[m\033[1m - XSS\033[m
 \033[1;31m[*]\033[m\033[1m - PHP\033[m
 \033[1;31m[*]\033[m\033[1m - UPLOAD ARQUIVOS\033[m
