@@ -176,7 +176,7 @@ class GetDadosUsuario:
 if __name__ == "__main__":
 
 	while True:
-		ListaVulnerabilidades = ["SQL","XSS","FTP","UPLOADARQUIVO"]
+		ListaVulnerabilidades = ["SQL","XSS","PHP","FTP","UPLOADARQUIVO"]
 		BanerScan()
 		print("""
 \033[1;33m[1]\033[m\033[1m - Scan de vulnerabilidades\033[m
