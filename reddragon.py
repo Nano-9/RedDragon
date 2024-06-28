@@ -1,3 +1,7 @@
+# Dúvidas?   | \
+# Ideias?    |    Me chame no telegram: https://t.me/rdzin9
+# Bugs?      | /
+
 import os
 import sys
 import re
@@ -157,7 +161,6 @@ class GetDadosUsuario:
 					if TesteFalhas in self.ArmazenarFalhasSQL:
 						print("\033[1;32m[{}]\033[m\033[1;33m [+] Site escaneado:\033[m \033[1m{} \033[m\033[1;4;36mSTATUS:\033[m \033[1;32m[VULNERÁVEL]\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),TestesURLfalhas))
 						print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m Armanezando em\033[m\033[1;36m Vulners.txt\033[m")
-						sleep(2)
 						with open("Vulners.txt","a") as AddSQLError:
 							AddSQLError.write("-----------------------------------------------------------\n")
 							AddSQLError.write("Site:"+str(TestesURLfalhas)+"\n")
@@ -165,6 +168,7 @@ class GetDadosUsuario:
 							AddSQLError.write("-----------------------------------------------------------\n")
 							AddSQLError.write("\n")
 							AddSQLError.close()
+						sleep(2)
 						break
 					else:
 						print("\033[1;32m[{}]\033[m\033[1;31m [!]\033[m \033[1mSite escaneado: {}, \033[1;33mSTATUS\033[m: \033[1;31m[NOT VULN]\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),TestesURLfalhas))
