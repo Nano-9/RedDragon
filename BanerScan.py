@@ -41,7 +41,7 @@ def BanerScan():
 			case "linux":
 				os.system("clear")
 				print("""\033[1;31m
- 				  [ T E L E G R A M: https://t.me/rdzin9 ]                                                 
+ 				  [ S C A N N E R  F O R  W E B S I T E S ]                                                 
                                                   
                   ##                              
     ##            ####                            
