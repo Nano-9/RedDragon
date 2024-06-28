@@ -32,3 +32,5 @@
 
 
 # PROXIMAS ATUALIZAÇÕES APARECERÃO AQUI ABAIXO:
+
+- Atualização dia: 27/06/2024 -> Correção de bugs!
