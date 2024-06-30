@@ -367,9 +367,9 @@ class ScannerOnlyWebSite:
 							try:
 								self.CONECTANDOSITESUB = self.Connect.get(getLINK+"'",headers=self.HeardersW,verify=True,cookies=self.CookieJs,proxies=self.Proxies1)
 							except requests.exceptions.SSLError:
-								print("\033[1;31m[!]\033[m \033[m Site com problemas de conexão SSL!\033[m")
+								print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Site com problemas de conexão SSL!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 							except requests.exceptions.ConnectionError:
-								print("\033[1;31m[!]\033[m \033[m Site com problemas de conexão!\033[m")
+								print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Site com problemas de conexão!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 							else:
 								if self.CONECTANDOSITESUB.status_code == 200:
 									self.CONTEUDOPARAANALISAR = bs4.BeautifulSoup(self.CONECTANDOSITESUB.text, "html.parser")
@@ -377,10 +377,12 @@ class ScannerOnlyWebSite:
 									for ERROSQLi in self.ErrorsSQLi:
 										if ERROSQLi in self.RESULTADOWEBSITES:
 											print("\033[1;33m[{}] \033[m\033[1;33mPágina:\033[m \033[1;36m{}\033[m \033[1m| Status:\033[m \033[1;;4;32mVulnerável!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),getLINK))
+											print("\033[1;32m[{}] \033[m\033[1;33m\033[1;33mSalvando no Arquivo OnlyScan.txt \033[m\033[1;33m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 											with open("OnlyScan.txt","a") as insereErros:
 												insereErros.write("-----------------------------------------------------------\n")
 												insereErros.write("Site: {}\n".format(self.WebSite))
-												insereErros.write("Página vulnerável a SQLinjection: {}\n".format(getLINK))
+												insereErros.write("Página vulnerável: {}\n".format(getLINK))
+												insereErros.write("Vulnerabilidade: SQLinjection\n")
 												insereErros.write("Hórario consulta: {}\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
 												insereErros.write("-----------------------------------------------------------\n")
 												insereErros.close()
@@ -511,8 +513,8 @@ if __name__ == "__main__":
 						ScanReader.close()
 			if finder == False:
 				input("\n\033[1;31m[*]\033[m\033[1m Você não tem sites vulneráveis ainda! ENTER PARA VOLTAR AO MENU: \033[m")
+
 		elif ChoiceUser == "x":
 			BanerScan()
 			print("\n\033[1;31m[*]\033[m\033[1m Saindo...\033[m")
 			sys.exit()
-#.
