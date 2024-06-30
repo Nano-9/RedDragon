@@ -415,7 +415,6 @@ if __name__ == "__main__":
 \033[1;33m[4]\033[m\033[1m - Abrir Sites Vulneráveis da opção 1\033[m
 \033[1;33m[5]\033[m\033[1m - Abrir Sites Vulneráveis da opção 2\033[m
 \033[1;33m[X]\033[m\033[1m - Sair\033[m
-
 			""")
 
 		ChoiceUser = str(input("\033[1;31mset\033[m\033[1m-> \033[m")).strip().lower()
@@ -512,7 +511,6 @@ if __name__ == "__main__":
 						ScanReader.close()
 			if finder == False:
 				input("\n\033[1;31m[*]\033[m\033[1m Você não tem sites vulneráveis ainda! ENTER PARA VOLTAR AO MENU: \033[m")
-
 		elif ChoiceUser == "x":
 			BanerScan()
 			print("\n\033[1;31m[*]\033[m\033[1m Saindo...\033[m")
