@@ -36,4 +36,4 @@
 
 - Atualização dia: 27/06/2024 -> Correção de bugs!
 - Atualização dia: 30/06/2024 -> Adição da opção 2 (Escaneamento de site único)
-  
+- Atualização dia: 30/06/2024 -> Correção de bugs!
