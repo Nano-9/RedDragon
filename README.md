@@ -11,7 +11,8 @@
 ![minha apresentação](https://img.shields.io/static/v1?label=GOOGLE-SEARCH&message=HACKING&color=black&style=<STYLE>&logo=<LOGO>)
 ![minha apresentação](https://img.shields.io/static/v1?label=FAILURES-FOR&message=WEBSITES&color=black&style=<STYLE>&logo=<LOGO>)
 
-![r](https://github.com/lucas-Dk/RedDragon/assets/69327287/8f647133-dfa9-4e3c-958f-1c334557cd25)
+![RedDragon](https://github.com/Nano-9/RedDragon/assets/69327287/9678acaf-dc9f-4e63-9808-b9ddc25a7ffc)
+
 
 # FUNÇÃO DO SCRIPT:
 
