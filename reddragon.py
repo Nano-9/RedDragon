@@ -350,50 +350,53 @@ class ScannerOnlyWebSite:
 											if AditionalLinks["href"] not in self.LinksFinalsTests:
 												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
 												self.MORE = True
-					if self.MORE == True:
-						newtestes = []
-						for p in self.LinksFinalsTests:
-							validandotudo = re.search(r"^(http://|https://){1}(.)+(id\=[0-9]+|cat\=[0-9]+|catid\=[0-9]+|itemid\=[0-9]+|order_id\=[0-9]+|item_id\=[0-9]+|artist\=[0-9]+)$",p,flags=re.IGNORECASE)
-							if validandotudo:
-								if "aspx" not in p:
-									if p in newtestes:
-										pass
-									else:
-										newtestes.append(p)
-						BanerScan()
-						print("\033[1;32m[*]\033[m \033[1m Iniciando o scaner...\033[m\n")
-						sleep(1.1)
-						for getLINK in newtestes:
-							try:
-								self.CONECTANDOSITESUB = self.Connect.get(getLINK+"'",headers=self.HeardersW,verify=True,cookies=self.CookieJs,proxies=self.Proxies1)
-							except requests.exceptions.SSLError:
-								print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Site com problemas de conexão SSL!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-							except requests.exceptions.ConnectionError:
-								print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Site com problemas de conexão!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-							else:
-								if self.CONECTANDOSITESUB.status_code == 200:
-									self.CONTEUDOPARAANALISAR = bs4.BeautifulSoup(self.CONECTANDOSITESUB.text, "html.parser")
-									self.RESULTADOWEBSITES = self.CONTEUDOPARAANALISAR.get_text()
-									for ERROSQLi in self.ErrorsSQLi:
-										if ERROSQLi in self.RESULTADOWEBSITES:
-											print("\033[1;33m[{}] \033[m\033[1;33mPágina:\033[m \033[1;36m{}\033[m \033[1m| Status:\033[m \033[1;;4;32mVulnerável!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),getLINK))
-											print("\033[1;32m[{}] \033[m\033[1;33m\033[1;33mSalvando no Arquivo OnlyScan.txt \033[m\033[1;33m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-											with open("OnlyScan.txt","a") as insereErros:
-												insereErros.write("-----------------------------------------------------------\n")
-												insereErros.write("Site: {}\n".format(self.WebSite))
-												insereErros.write("Página vulnerável: {}\n".format(getLINK))
-												insereErros.write("Vulnerabilidade: SQLinjection\n")
-												insereErros.write("Hórario consulta: {}\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
-												insereErros.write("-----------------------------------------------------------\n")
-												insereErros.close()
-											break
+						if self.MORE == True:
+							newtestes = []
+							for p in self.LinksFinalsTests:
+								validandotudo = re.search(r"^(http://|https://){1}(.)+(id\=[0-9]+|cat\=[0-9]+|catid\=[0-9]+|itemid\=[0-9]+|order_id\=[0-9]+|item_id\=[0-9]+|artist\=[0-9]+)$",p,flags=re.IGNORECASE)
+								if validandotudo:
+									if "aspx" not in p:
+										if p in newtestes:
+											pass
 										else:
-											print("\033[1;33m[{}] \033[m\033[1;33mPágina:\033[m \033[1;36m{}\033[m \033[1m| Status:\033[m \033[1;4;31mNão vulnerável\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),getLINK))
-											sleep(0.8)
-						print("\n{}\033[1;32m[+]\033[m \033[1m Retornando para a home...\033[m")
-						sleep(1)
-
-					elif len(self.LinksFinalsPHP) == None:
+											newtestes.append(p)
+							BanerScan()
+							print("\033[1;32m[*]\033[m \033[1m Iniciando o scaner...\033[m\n")
+							sleep(1.1)
+							for getLINK in newtestes:
+								try:
+									self.CONECTANDOSITESUB = self.Connect.get(getLINK+"'",headers=self.HeardersW,verify=True,cookies=self.CookieJs,proxies=self.Proxies1)
+								except requests.exceptions.SSLError:
+									print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Site com problemas de conexão SSL!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+								except requests.exceptions.ConnectionError:
+									print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Site com problemas de conexão!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+								else:
+									if self.CONECTANDOSITESUB.status_code == 200:
+										self.CONTEUDOPARAANALISAR = bs4.BeautifulSoup(self.CONECTANDOSITESUB.text, "html.parser")
+										self.RESULTADOWEBSITES = self.CONTEUDOPARAANALISAR.get_text()
+										for ERROSQLi in self.ErrorsSQLi:
+											if ERROSQLi in self.RESULTADOWEBSITES:
+												print("\033[1;33m[{}] \033[m\033[1;33mPágina:\033[m \033[1;36m{}\033[m \033[1m| Status:\033[m \033[1;;4;32mVulnerável!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),getLINK))
+												print("\033[1;32m[{}] \033[m\033[1;33m\033[1;33mSalvando no Arquivo OnlyScan.txt \033[m\033[1;33m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+												with open("OnlyScan.txt","a") as insereErros:
+													insereErros.write("-----------------------------------------------------------\n")
+													insereErros.write("Site: {}\n".format(self.WebSite))
+													insereErros.write("Página vulnerável: {}\n".format(getLINK))
+													insereErros.write("Vulnerabilidade: SQLinjection\n")
+													insereErros.write("Hórario consulta: {}\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
+													insereErros.write("-----------------------------------------------------------\n")
+													insereErros.close()
+												break
+											else:
+												print("\033[1;33m[{}] \033[m\033[1;33mPágina:\033[m \033[1;36m{}\033[m \033[1m| Status:\033[m \033[1;4;31mNão vulnerável\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),getLINK))
+												sleep(0.8)
+							print("\n{}\033[1;32m[+]\033[m \033[1m Retornando para a home...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+							sleep(1)
+						else:
+							print("\n{}\033[1;32m[+]\033[m \033[1m Na minha filtragem, não encontrei nenhum link com".format(datetime.datetime.now().strftime("%H:%M:%S")))
+							print("Parâmetros vulneráveis! Retornando para a home...\033[m")
+							sleep(2)
+					elif len(self.LinksFinalsPHP) == 0:
 						print("\n{}\033[1;31m[!]\033[m \033[1m Nenhuma url com paramentros para testes encontrado ...\033[m")
 						sleep(2)
 				else:
@@ -518,3 +521,4 @@ if __name__ == "__main__":
 			BanerScan()
 			print("\n\033[1;31m[*]\033[m\033[1m Saindo...\033[m")
 			sys.exit()
+#.
