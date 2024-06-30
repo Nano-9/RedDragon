@@ -58,14 +58,14 @@ class GetDadosUsuario:
 		""" FILTRANDO TODAS AS URLS RECEBIDAS PELA CONEXÃO """
 
 		self.RealLinkBuscaDork1 = "https://br.search.yahoo.com/search?ei=UTF-8&fr=crmas&p="
-
+		self.Timesout = 10
 		if self.option == "-d":
 			self.RealLinkBuscaDork2 = self.dork.replace(":","%3A")
 			self.RealLinkBuscaDork3 = self.RealLinkBuscaDork2.replace("?","%3F")
 			self.RealLinkBuscaDork4 = self.RealLinkBuscaDork3.replace("=","%3D&")
 			self.RealLinkBuscaDork5 = self.RealLinkBuscaDork4
 			self.RealLinkBuscaDork6 = self.RealLinkBuscaDork1+self.RealLinkBuscaDork5
-			print("\033[1;32m[*]\033[m \033[1;33mBUSCANDO COM A DORK: \033[m\033[1;4m{}\033[m\n".format(self.dork))
+			print("\033[1;32m[{}]\033[m \033[1;36m[*]\033[m \033[1;33mBuscando com a dork: \033[m\033[1;4m{}\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S"),self.dork))
 
 		self.CookiesGoogle = {
 		"1P_JAR":"2024-06-24-23",
@@ -99,7 +99,7 @@ class GetDadosUsuario:
 
 	def GetPagesSearch(self):
 
-		print("\033[1;32m[+]\033[m \033[1;33mBUSCA INICIADA AS:\033[m [{}]\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
+		print("\033[1;32m[{}]\033[m \033[1;36m[*]\033[m \033[1;33mBuscas Iniciadas!\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
 		self.IniciarBuscaPage = self.Requisicao.get(self.RealLinkBuscaDork6,headers=self.HeadersChromium,cookies=self.CookiesGoogle,proxies=self.proxy1)
 		self.BuscasPaginasWEB = bs4.BeautifulSoup(self.IniciarBuscaPage.text,"html.parser")
 
@@ -112,7 +112,7 @@ class GetDadosUsuario:
 
 
 		for Num, LinksPages in enumerate(self.NumPagesSchsWeb):
-			print("\033[1;32m[+]\033[m \033[1;33mRealizando buscas na página\033[m \033[1;32m{}\033[m: \033[1;36m{}\033[m".format(Num+1,LinksPages))
+			print("\033[1;32m[{}] \033[m\033[1;36m[*]\033[m \033[1;33mRealizando buscas na página\033[m \033[1;31m{}\033[m: \033[1;36m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),Num+1,LinksPages))
 			self.IniciarBusca = self.Requisicao.get(LinksPages,headers=self.HeadersChromium,cookies=self.CookiesGoogle,proxies=self.proxy2)
 			self.Htmls2 = bs4.BeautifulSoup(self.IniciarBusca.text,"html.parser")
 			self.Data = self.Htmls2.find_all("a",{"referrerpolicy":"origin"},href=True)
@@ -126,40 +126,48 @@ class GetDadosUsuario:
 	def FilterURLForOnline(self):
 		""" OPÇÕES DA ETAPA 1 """
 		BanerScan()
-		print("\n\033[1;32m[+]\033[m \033[1;33mFILTRANDO URL'S E VERIFICANDO SE OS SITES ESTÃO ONLINE PARA TESTES...:\n\033[m")
+		print("\n\033[1;32m[{}]\033[m \033[1;36m[*]\033[m \033[1;33mFiltrando url's e verificando se os sites estão online...:\n\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 		for nums, urls in enumerate(self.LinksFiltrados1):
 			try:
 				self.IniciarBusca = self.Requisicao.get(urls,headers=self.HeadersChromium,cookies=self.CookiesGoogle,proxies=self.proxy2)
 			except requests.exceptions.SSLError:
-				print("\033[1;31m[!]\033[m \033[1;3mSite\033[m\033[1m:\033[m \033[1;32m{}\033[m \033[1mCom problemas de conexão SSL!\033[m".format(urls))
+				print("\033[1;31m[{}] \033[m\033[1;31m[SSLerrors]\033[m \033[1;31mSite\033[m\033[1m:\033[m \033[1;31m{} |\033[m \033[1;31mCom problemas de conexão SSL!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),urls))
 			except requests.exceptions.ConnectionError:
-				print("\033[1;31m[!]\033[m \033[1;3mSite\033[m\033[1m:\033[m \033[1;32m{}\033[m \033[1mLink Quebrado ou Página removida!\033[m".format(urls))
+				print("\033[1;33m[{}] \033[m\033[1;33m[Conection]\033[m \033[1;31mSite\033[m\033[1m:\033[m \033[1;31m{} |\033[m \033[1mLink Quebrado ou Página removida!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),urls))
 			else:
-				print("\033[1;32m[*]\033[m \033[1;3mSite\033[m\033[1m:\033[m \033[1;32m{}\033[m \033[1mONLINE!\033[m".format(urls))
+				print("\033[1;32m[{}] \033[m\033[1;32m[Conection]\033[m \033[1mSite\033[m\033[1m:\033[m \033[1;36m{} |\033[m \033[1;32mOnline!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),urls))
 				self.LinksFiltrados2.append(urls)
 
 	def ExploreSQL(self):
 		""" EXPLORANDO AS FALHAS SQLinjection """
 		BanerScan()
-		print("\n\033[1;32m[{}]\033[m\033[1;32m [+]\033[m \033[1;33mREALIZANDO TESTES PARA A FALHA: \033[1;4;36mSQLinjection\033[m:\n\033[m")
+		print("\n\033[1;32m[{}]\033[m\033[1;32m [*]\033[m \033[1;33mRealizando testes...\033[m:\n\033[m")
 		print("\033[1;32m[{}]\033[m\033[1;36m [*]\033[m \033[1mSites filtrados:\033[m \033[1;33m[{}]\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),len(self.LinksFiltrados2)))
 		print("\033[1;32m[{}]\033[m\033[1;36m [*]\033[m \033[1mEscaneando código da página...\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
 		sleep(4)
 		for TestesURLfalhas in self.LinksFiltrados2:
 			BanerScan()
-			print("\033[1;32m[+]\033[m \033[1mEscaneando o site: {}\033[m\n".format(TestesURLfalhas))
+			print("\033[1;32m[{}]\033[m \033[1;32m[*]\033[m \033[1mEscaneando o site: {}\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S"),TestesURLfalhas))
 			try:
-				self.IniciarBuscasSQL = self.Requisicao.get(TestesURLfalhas+"'",headers=self.HeadersChromium,cookies=self.CookiesGoogle,proxies=self.proxy2)
+				self.IniciarBuscasSQL = self.Requisicao.get(TestesURLfalhas+"'",headers=self.HeadersChromium,cookies=self.CookiesGoogle,proxies=self.proxy2,timeout=self.Timesout)
 			except requests.exceptions.SSLError:
-				print("\033[1;31m[!]\033[m \033[1mSite com problemas de conexão SSL!\033[m")
+				print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mSite com problemas de conexão SSL!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+				print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mPulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+				sleep(1)
 			except requests.exceptions.ConnectionError:
-				print("\033[1;31m[!]\033[m \033[1mSite com problemas de conexão!\033[m")
+				print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mSite com problemas de conexão!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+				print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mPulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+				sleep(1)
+			except requests.exceptions.Timeout:
+				print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mSite com problemas de conexão!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+				print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mPulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+				sleep(1)
 			else:
 				self.SearchFalhasSQL = bs4.BeautifulSoup(self.IniciarBuscasSQL.text,"html.parser")
 				self.ArmazenarFalhasSQL = self.SearchFalhasSQL.get_text()
 				for NumFalhas, TesteFalhas in enumerate(self.ErrorsSQL):
 					if TesteFalhas in self.ArmazenarFalhasSQL:
-						print("\033[1;32m[{}]\033[m\033[1;33m [+] Site escaneado:\033[m \033[1m{} \033[m\033[1;4;36mSTATUS:\033[m \033[1;32m[VULNERÁVEL]\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),TestesURLfalhas))
+						print("\033[1;32m[{}]\033[m\033[1;33m [*] Site escaneado:\033[m \033[1m{} | \033[m\033[1;4;36mStatus:\033[m \033[1;32mVulnerável\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),TestesURLfalhas))
 						print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m Armanezando em\033[m\033[1;36m Vulners.txt\033[m")
 						with open("Vulners.txt","a") as AddSQLError:
 							AddSQLError.write("-----------------------------------------------------------\n")
@@ -171,7 +179,7 @@ class GetDadosUsuario:
 						sleep(2)
 						break
 					else:
-						print("\033[1;32m[{}]\033[m\033[1;31m [!]\033[m \033[1mSite escaneado: {}, \033[1;33mSTATUS\033[m: \033[1;31m[NOT VULN]\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),TestesURLfalhas))
+						print("\033[1;32m[{}]\033[m\033[1;31m [-]\033[m \033[1mSite escaneado: {} | \033[1;33mStatus\033[m: \033[1;31mNão vulnerável\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),TestesURLfalhas))
 						sleep(0.6)
 
 class ScannerOnlyWebSite:
@@ -189,6 +197,7 @@ class ScannerOnlyWebSite:
 		self.LinksFinalsPHP = []
 		self.LinksFinalsTests = []
 		self.SCANEAR = False
+		self.Timeout = 10
 		self.ErrorsSQLi = [
 		"SQL",
 		"sql",
@@ -243,15 +252,19 @@ class ScannerOnlyWebSite:
 		""" MÉTODO PARA SE CONECTAR AO SITE E RETORNAR OS LINKS """
 
 		try:
-			self.ConnectWebSites = self.Connect.get(self.WebSite,headers=self.HeardersW,proxies=self.Proxies3)
+			self.ConnectWebSites = self.Connect.get(self.WebSite,headers=self.HeardersW,verify=True,proxies=self.Proxies3,timeout=self.Timeout)
 		except requests.exceptions.SSLError:
-			print("\033[1;31m[!]\033[m \033[m Site com problemas de conexão SSL!\033[m")
-			print("\033[1;31m[!]\033[m \033[m Tentando novamente...\033[m")
-			sleep(1)
+			print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mSite com problemas de conexão SSL!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+			print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mVoltando ao menu...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+			sleep(2)
 		except requests.exceptions.ConnectionError:
-			print("\033[1;31m[!]\033[m \033[m Site com problemas de conexão!\033[m")
-			print("\033[1;31m[!]\033[m \033[m Tentando novamente...\033[m")
-			sleep(1)
+			print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mSite com problemas de conexão!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+			print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mVoltando ao menu...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+			sleep(2)
+		except requests.exceptions.Timeout:
+			print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mTempo limite de conexão atingido!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+			print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mVoltando ao menu...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+			sleep(2)
 		else:
 			if self.ConnectWebSites.status_code == 200:
 				BanerScan()
@@ -278,9 +291,21 @@ class ScannerOnlyWebSite:
 							try:
 								self.GetConnectWeb1 = self.Connect.get(GETMORELINKSPHP,headers=self.HeardersW,verify=True,proxies=self.Proxies2)
 							except requests.exceptions.SSLError:
-								print("\033[1;31m[!]\033[m \033[m Site com problemas de conexão SSL!\033[m")
+								print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mSite com problemas de conexão SSL!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+								print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mPulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+								sleep(2)
 							except requests.exceptions.ConnectionError:
-								print("\033[1;31m[!]\033[m \033[m Site com problemas de conexão!\033[m")
+								print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mSite com problemas de conexão!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+								print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mPulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+								sleep(2)
+							except requests.exceptions.Timeout:
+								print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mTempo limite de conexão excedido!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+								print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mPulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+								sleep(2)
+							except requests.exceptions.RequestException:
+								print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mSite instável!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+								print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mPulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+								sleep(2)
 							else:
 								if self.GetConnectWeb1.status_code == 200:
 									self.GetMoreLinksSameWebSite = bs4.BeautifulSoup(self.GetConnectWeb1.text, "html.parser")
@@ -365,11 +390,18 @@ class ScannerOnlyWebSite:
 							sleep(1.1)
 							for getLINK in newtestes:
 								try:
-									self.CONECTANDOSITESUB = self.Connect.get(getLINK+"'",headers=self.HeardersW,verify=True,cookies=self.CookieJs,proxies=self.Proxies1)
+									self.CONECTANDOSITESUB = self.Connect.get(getLINK+"'",headers=self.HeardersW,verify=True,cookies=self.CookieJs,proxies=self.Proxies1,timeout=self.Timeout)
 								except requests.exceptions.SSLError:
-									print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Site com problemas de conexão SSL!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+									print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Página com problemas de conexão SSL!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+									print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Pulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 								except requests.exceptions.ConnectionError:
-									print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Site com problemas de conexão!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+									print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Página com problemas de conexão!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+									print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Pulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+								except requests.exceptions.Timeout:
+									print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Tempo esgotado de solicitação!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+									print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Pulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+								except requests.exceptions.RequestException:
+									print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[m Erro interno do site, pulando...!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 								else:
 									if self.CONECTANDOSITESUB.status_code == 200:
 										self.CONTEUDOPARAANALISAR = bs4.BeautifulSoup(self.CONECTANDOSITESUB.text, "html.parser")
@@ -386,6 +418,7 @@ class ScannerOnlyWebSite:
 													insereErros.write("Hórario consulta: {}\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
 													insereErros.write("-----------------------------------------------------------\n")
 													insereErros.close()
+												sleep(1.6)
 												break
 											else:
 												print("\033[1;33m[{}] \033[m\033[1;33mPágina:\033[m \033[1;36m{}\033[m \033[1m| Status:\033[m \033[1;4;31mNão vulnerável\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),getLINK))
@@ -393,19 +426,19 @@ class ScannerOnlyWebSite:
 							print("\n{}\033[1;32m[+]\033[m \033[1m Retornando para a home...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 							sleep(1)
 						else:
-							print("\n{}\033[1;32m[+]\033[m \033[1m Na minha filtragem, não encontrei nenhum link com".format(datetime.datetime.now().strftime("%H:%M:%S")))
-							print("Parâmetros vulneráveis! Retornando para a home...\033[m")
+							print("\n{}\033[1;32m[*]\033[m \033[1m Na minha filtragem, não encontrei nenhum link com".format(datetime.datetime.now().strftime("%H:%M:%S")))
+							print("{}\033[1;32m[*]\033[m \033[1mParâmetros vulneráveis! Retornando para a home...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 							sleep(2)
 					elif len(self.LinksFinalsPHP) == 0:
-						print("\n{}\033[1;31m[!]\033[m \033[1m Nenhuma url com paramentros para testes encontrado ...\033[m")
+						print("\n\033[1;32m[{}]\033[m \033[1;31m[!]\033[m \033[1m Nenhuma url com paramentros para testes encontrado ...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 						sleep(2)
 				else:
 					print("\n\033[1;32m[{}]\033[m \033[1;31m[!]\033[m\033[1m Não encontrei Sublinks para escanear!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 					sleep(3)
 			else:
-				print("\033[1;31m[!]\033[m \033[1;33mNão foi possível estabelecer uma conexão com o site:\033[m \033[1;4m{}\033[m".format(self.WebSite))
-				print("\033[1;31m[!]\033[m \033[1;33mE por isso não foi possível localizar sublinks!\033[m")
-				print("\033[1;31m[!]\033[m \033[1;33mVoltando ao menu...\n")
+				print("\033[1;32m[{}]\033[m \033[1;31m[!]\033[m \033[1;33mNão foi possível estabelecer uma conexão com o site:\033[m \033[1;4m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),self.WebSite))
+				print("\033[1;32m[{}]\033[m \033[1;31m[!]\033[m \033[1;33mE por isso não foi possível localizar sublinks!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+				print("\033[1;32m[{}]\033[m \033[1;31m[!]\033[m \033[1;33mVoltando ao menu...\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
 				sleep(3)
 
 if __name__ == "__main__":
@@ -414,69 +447,75 @@ if __name__ == "__main__":
 		ListaVulnerabilidades = ["SQL","XSS","PHP","FTP","UPLOADARQUIVO"]
 		BanerScan()
 		print("""
-\033[1;33m[1]\033[m\033[1m - Scan de vulnerabilidades\033[m
-\033[1;33m[2]\033[m\033[1m - Escanear um site\033[m
-\033[1;33m[3]\033[m\033[1m - Ver Lista de vulnerabilidades\033[m
-\033[1;33m[4]\033[m\033[1m - Abrir Sites Vulneráveis da opção 1\033[m
-\033[1;33m[5]\033[m\033[1m - Abrir Sites Vulneráveis da opção 2\033[m
-\033[1;33m[X]\033[m\033[1m - Sair\033[m
+\033[1;34m[ 1 ]\033[m\033[1m - Scan de vulnerabilidades\033[m
+\033[1;34m[ 2 ]\033[m\033[1m - Escanear um site\033[m
+\033[1;34m[ 3 ]\033[m\033[1m - Ver Lista de vulnerabilidades\033[m
+\033[1;34m[ 4 ]\033[m\033[1m - Abrir Sites Vulneráveis da opção 1\033[m
+\033[1;34m[ 5 ]\033[m\033[1m - Abrir Sites Vulneráveis da opção 2\033[m
+\033[1;34m[ X ]\033[m\033[1m - Sair\033[m
 			""")
-
-		ChoiceUser = str(input("\033[1;31mset\033[m\033[1m-> \033[m")).strip().lower()
-		if ChoiceUser == "1":
+		try:
+			ChoiceUser = str(input("\033[1;31mset\033[m\033[1m-> \033[m")).strip().lower()
+		except KeyboardInterrupt:
 			BanerScan()
-			Vulnerabilidade = str(input("\033[1;32m[+]\033[m\033[1m Escolha a vulnerabilidade: > \033[m")).upper().strip()
-			while Vulnerabilidade not in ListaVulnerabilidades:
+			print("\n\n\033[1mSaindo...\033[m")
+			sleep(0.5)
+			raise SystemExit
+		else:
+			if ChoiceUser == "1":
+				BanerScan()
 				Vulnerabilidade = str(input("\033[1;32m[+]\033[m\033[1m Escolha a vulnerabilidade: > \033[m")).upper().strip()
-			if Vulnerabilidade == "SQL":
-				DorkUsers = str(input("\033[1;32m[+]\033[m\033[1m Insira sua Dork: > \033[m")).strip()
-				while DorkUsers == "":
-					DorkUsers = str(input("\033[1;31m[+]\033[m\033[1m Insira sua Dork: > \033[m")).strip()
-				IniciarVarredura = GetDadosUsuario(option="-d",wordlist=False,dork=DorkUsers)
-				IniciarVarredura.FiltrarURL()
-				IniciarVarredura.GetPagesSearch()
-				IniciarVarredura.FilterURLForOnline()
-				IniciarVarredura.ExploreSQL()
+				while Vulnerabilidade not in ListaVulnerabilidades:
+					Vulnerabilidade = str(input("\033[1;32m[+]\033[m\033[1m Escolha a vulnerabilidade: > \033[m")).upper().strip()
+				if Vulnerabilidade == "SQL":
+					DorkUsers = str(input("\033[1;32m[+]\033[m\033[1m Insira sua Dork: > \033[m")).strip()
+					while DorkUsers == "":
+						DorkUsers = str(input("\033[1;31m[+]\033[m\033[1m Insira sua Dork: > \033[m")).strip()
+					IniciarVarredura = GetDadosUsuario(option="-d",wordlist=False,dork=DorkUsers)
+					IniciarVarredura.FiltrarURL()
+					IniciarVarredura.GetPagesSearch()
+					IniciarVarredura.FilterURLForOnline()
+					IniciarVarredura.ExploreSQL()
+					BanerScan()
+				elif Vulnerabilidade == "XSS":
+					BanerScan()
+					print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
+					sleep(2)
+				elif Vulnerabilidade == "PHP":
+					BanerScan()
+					print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
+					sleep(2)
+				elif Vulnerabilidade == "FTP":
+					BanerScan()
+					print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
+					sleep(2)
+				elif Vulnerabilidade == "UPLOADARQUIVO":
+					BanerScan()
+					print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
+					sleep(2)
+				else:
+					BanerScan()
+					print("\033[1;31m[!]\033[m\033[1m Escolha uma opção válida!\033[m")
+					sleep(2)
+			elif ChoiceUser == "2":
 				BanerScan()
-			elif Vulnerabilidade == "XSS":
-				BanerScan()
-				print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
-				sleep(2)
-			elif Vulnerabilidade == "PHP":
-				BanerScan()
-				print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
-				sleep(2)
-			elif Vulnerabilidade == "FTP":
-				BanerScan()
-				print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
-				sleep(2)
-			elif Vulnerabilidade == "UPLOADARQUIVO":
-				BanerScan()
-				print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
-				sleep(2)
-			else:
-				BanerScan()
-				print("\033[1;31m[!]\033[m\033[1m Escolha uma opção válida!\033[m")
-				sleep(2)
-		elif ChoiceUser == "2":
-			BanerScan()
-			print("\033[1;36m[*]\033[m \033[m\033[1m exemplo de url: https://example.com/ (www and .br-> opcional) \033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),))
-			print("\033[1;36m[*]\033[m \033[m\033[1m Escaneamento completo de site único!\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S"),))
-			UrlSiteUser = str(input("\033[1;31mUrl> \033[m")).strip()
-			ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/\.mg/\.gov/)$",str(UrlSiteUser),flags=re.IGNORECASE)
-			while not ValidarUrls:
-				print("\033[1;31m[!]\033[m\033[1m Insira um link válido!\033[m")
-				UrlSiteUser = str(input("\033[1;32m[+]\033[m \033[1m Url: \033[m")).strip()
+				print("\033[1;36m[*]\033[m \033[m\033[1m exemplo de url: https://example.com/ (www and .br-> opcional) \033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),))
+				print("\033[1;36m[*]\033[m \033[m\033[1m Escaneamento completo de site único!\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S"),))
+				UrlSiteUser = str(input("\033[1;31mUrl> \033[m")).strip()
 				ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/\.mg/\.gov/)$",str(UrlSiteUser),flags=re.IGNORECASE)
-			if ValidarUrls:
-				EscanearWebSites = ScannerOnlyWebSite(website=UrlSiteUser)
-				EscanearWebSites.ScannerOnlyWebsite()
+				while not ValidarUrls:
+					print("\033[1;31m[!]\033[m\033[1m Insira um link válido!\033[m")
+					UrlSiteUser = str(input("\033[1;32m[+]\033[m \033[1m Url: \033[m")).strip()
+					ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/\.mg/\.gov/)$",str(UrlSiteUser),flags=re.IGNORECASE)
+				if ValidarUrls:
+					EscanearWebSites = ScannerOnlyWebSite(website=UrlSiteUser)
+					EscanearWebSites.ScannerOnlyWebsite()
+					BanerScan()
+			elif ChoiceUser == "3":
 				BanerScan()
-		elif ChoiceUser == "3":
-			BanerScan()
-			print("\033[1;31m[*]\033[m\033[1m VULNERABILIDADES QUE O SCRIPT IRÁ EXPLORAR:\033[m")
-			print("""
-\033[1m[ VERDE JÁ FOI IMPLEMENTADO ]\033[m
+				print("\033[1;31m[*]\033[m\033[1m Vulnerabilidades que o script irá buscar:\033[m")
+				print("""
+\033[1m[ Verde já foi implementado ]\033[m
 
 \033[1;32m[*]\033[m\033[1m - SQL\033[m
 \033[1;31m[*]\033[m\033[1m - XSS\033[m
@@ -484,41 +523,42 @@ if __name__ == "__main__":
 \033[1;31m[*]\033[m\033[1m - UPLOAD ARQUIVOS\033[m
 \033[1;31m[*]\033[m\033[1m - COOKIES\033[m
 				""")
-			input("\033[1;31m[*]\033[m\033[1m ENTER PARA VOLTAR AO MENU: \033[m")
-		elif ChoiceUser == "4":
-			BanerScan()
-			print("\n\033[1;31m[*]\033[m\033[1m SITES ESCANEADOS E VULNERÁVEIS A SQL INJECTION:\n\033[m")
-			caminho = os.getcwd()
-			find = False
-			for files in os.listdir(str(caminho)):
-				if files == "Vulners.txt":
-					with open("Vulners.txt","r") as SQLreader:
-						for VULN in SQLreader:
-							print(VULN.replace("\n",""))
-						find = True
-						input("\033[1;31m[*]\033[m\033[1m ENTER PARA VOLTAR AO MENU: \033[m")
-						SQLreader.close()
-					break
-			if find == False:
-				input("\n\033[1;31m[*]\033[m\033[1m Você não tem sites vulneráveis ainda! ENTER PARA VOLTAR AO MENU: \033[m")
+				input("\033[1;31m[*]\033[m\033[1m Enter para voltar ao menu... \033[m")
+			elif ChoiceUser == "4":
+				BanerScan()
+				print("\n\033[1;31m[*]\033[m\033[1m Sites escaneados e vulneráveis:\n\033[m")
+				caminho = os.getcwd()
+				find = False
+				for files in os.listdir(str(caminho)):
+					if files == "Vulners.txt":
+						with open("Vulners.txt","r") as SQLreader:
+							for VULN in SQLreader:
+								print(VULN.replace("\n",""))
+							find = True
+							input("\033[1;31m[*]\033[m\033[1m Enter para voltar ao menu... \033[m")
+							SQLreader.close()
+						break
+				if find == False:
+					input("\n\033[1;31m[*]\033[m\033[1m Você não tem sites vulneráveis ainda! Enter para voltar ao menu... \033[m")
 
-		elif ChoiceUser == "5":
-			BanerScan()
-			finder = False
-			print("\n\033[1;31m[*]\033[m\033[1m SITES ESCANEADOS:\n\033[m")
-			caminho2 = os.getcwd()
-			for arq in os.listdir(str(caminho2)):
-				if arq == "OnlyScan.txt":
-					with open("OnlyScan.txt","r") as ScanReader:
-						for St in ScanReader:
-							print(St.replace("\n",""))
-						finder = True
-						ScanReader.close()
-			if finder == False:
-				input("\n\033[1;31m[*]\033[m\033[1m Você não tem sites vulneráveis ainda! ENTER PARA VOLTAR AO MENU: \033[m")
+			elif ChoiceUser == "5":
+				BanerScan()
+				finder = False
+				print("\n\033[1;31m[*]\033[m\033[1m SITES ESCANEADOS:\n\033[m")
+				caminho2 = os.getcwd()
+				for arq in os.listdir(str(caminho2)):
+					if arq == "OnlyScan.txt":
+						with open("OnlyScan.txt","r") as ScanReader:
+							for St in ScanReader:
+								print(St.replace("\n",""))
+							finder = True
+							ScanReader.close()
+				if finder == False:
+					input("\n\033[1;31m[*]\033[m\033[1m Sites escaneados e vulneráveis, aparecerão aqui! Enter para voltar ao menu... \033[m")
+				else:
+					input("\n\033[1;31m[*]\033[m\033[1m Enter para voltar ao menu... \033[m")
 
-		elif ChoiceUser == "x":
-			BanerScan()
-			print("\n\033[1;31m[*]\033[m\033[1m Saindo...\033[m")
-			sys.exit()
-#.
+			elif ChoiceUser == "x":
+				BanerScan()
+				print("\n\033[1;31m[*]\033[m\033[1m Saindo...\033[m")
+				sys.exit()
