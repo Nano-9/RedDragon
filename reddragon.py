@@ -280,9 +280,9 @@ class ScannerOnlyWebSite:
 				for lks in self.ArmazenarContent:
 					size_links.append(lks["href"])
 				print("\033[1;32m[{}]\033[m\033[1m Links encontrados: {}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),size_links))
-				#yprint("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Iniciando escaneamento...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"))
+		
 				sleep(1.4)
-				print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Procurando por links com parametros de DB...\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S"))
+				print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Procurando por links com parametros de DB...\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
 				sleep(1.4)
 				for BuscaLinksOnSites in self.ArmazenarContent:
 					if "javascript" not in BuscaLinksOnSites["href"]:
