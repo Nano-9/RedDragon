@@ -436,7 +436,7 @@ class ScannerOnlyWebSite:
 										for ERROSQLi in self.ErrorsSQLi:
 											if ERROSQLi in self.RESULTADOWEBSITES:
 												print("\033[1;33m[{}] \033[m\033[1;33mPágina:\033[m \033[1;36m{}\033[m \033[1m| Status:\033[m \033[1;;4;32mVulnerável!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),getLINK))
-												print("\033[1;32m[{}] \033[m\033[1;33m\033[1;33mSalvando no Arquivo OnlyScan.txt \033[m\033[1;33m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+												print("\033[1;33m[{}] \033[m\033[1mSalvando no Arquivo OnlyScan.txt \033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 												with open("OnlyScan.txt","a") as insereErros:
 													insereErros.write("-----------------------------------------------------------\n")
 													insereErros.write("Site: {}\n".format(self.WebSite))
