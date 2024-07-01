@@ -2,6 +2,8 @@
 # Ideias?    |    Me chame no telegram: https://t.me/rdzin9
 # Bugs?      | /
 
+#AINDA ESTOU ESCREVENDO! NÃO ESTÁ 100% PRONTO ALGUMAS OPÇÕES AI, SERÃO IMPLANTADAS MAIS PRA FRENTE 
+
 import os
 import sys
 import re
