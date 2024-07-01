@@ -278,7 +278,7 @@ class ScannerOnlyWebSite:
 				self.ArmazenarContent = self.ContentSite.find_all("a",href=True)
 				self.size_links = []
 				for lks in self.ArmazenarContent:
-					size_links.append(lks["href"])
+					self.size_links.append(lks["href"])
 				if len(self.size_links) > 0:
 					print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Links encontrados: [ {} ]\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),len(self.size_links)))
 					print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Iniciando escaneamento...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
