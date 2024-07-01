@@ -3,7 +3,7 @@
 # Bugs?      | /
 
 # Projeto ainda não finalizado!
-# algumas opções, ainda serão implantadas!
+# Algumas opções, ainda serão implantadas!
 # Estou escrevendo ele ainda, qualquer erro, me reportem!
 
 import os
