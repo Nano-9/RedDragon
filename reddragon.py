@@ -148,7 +148,7 @@ class GetDadosUsuario:
 		print("\n\033[1;32m[{}]\033[m\033[1;32m [*]\033[m \033[1;33mRealizando testes...\033[m:\n\033[m")
 		print("\033[1;32m[{}]\033[m\033[1;36m [*]\033[m \033[1mSites filtrados:\033[m \033[1;33m[{}]\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),len(self.LinksFiltrados2)))
 		print("\033[1;32m[{}]\033[m\033[1;36m [*]\033[m \033[1mEscaneando código da página...\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
-		sleep(4)
+		sleep(2)
 		for TestesURLfalhas in self.LinksFiltrados2:
 			BanerScan()
 			print("\033[1;32m[{}]\033[m \033[1;32m[*]\033[m \033[1mEscaneando o site: {}\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S"),TestesURLfalhas))
@@ -157,15 +157,15 @@ class GetDadosUsuario:
 			except requests.exceptions.SSLError:
 				print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mSite com problemas de conexão SSL!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 				print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mPulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-				sleep(1)
+				sleep(0.1)
 			except requests.exceptions.ConnectionError:
 				print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mSite com problemas de conexão!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 				print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mPulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-				sleep(1)
+				sleep(0.1)
 			except requests.exceptions.Timeout:
 				print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mSite com problemas de conexão!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 				print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mPulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-				sleep(1)
+				sleep(0.1)
 			else:
 				self.SearchFalhasSQL = bs4.BeautifulSoup(self.IniciarBuscasSQL.text,"html.parser")
 				self.ArmazenarFalhasSQL = self.SearchFalhasSQL.get_text()
@@ -184,7 +184,7 @@ class GetDadosUsuario:
 						break
 					else:
 						print("\033[1;32m[{}]\033[m\033[1;31m [-]\033[m \033[1mSite escaneado: {} | \033[1;33mStatus\033[m: \033[1;31mNão vulnerável\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),TestesURLfalhas))
-						sleep(0.6)
+						sleep(0.01)
 
 class ScannerOnlyWebSite:
 	""" CLASSE ESCANEAMENTO ÚNICO """
@@ -287,18 +287,18 @@ class ScannerOnlyWebSite:
 					if "javascript" not in BuscaLinksOnSites["href"]:
 						if ".php?" in BuscaLinksOnSites["href"]:
 							self.LinksFinalsPHP.append(self.WebSite+str(BuscaLinksOnSites["href"]))
-							print("\033[1;32m[{}]\033[m \033[1;32m[FOUND]\033[m \033[1mLinks dentro do Site: \033[m\033[1;4m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),self.WebSite+BuscaLinksOnSites["href"]))
-							sleep(0.2)
+							print("\033[1;32m[{}]\033[m \033[1;32m[FOUND]\033[m \033[1mLinks dentro do Site: \033[m\033[1;5m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),self.WebSite+BuscaLinksOnSites["href"]))
+							sleep(0.01)
 							self.SCANEAR = True
 						if BuscaLinksOnSites["href"].endswith(".php"):
 							if BuscaLinksOnSites["href"] not in self.LinksFinalsPHP:
 								self.LinksFinalsPHP.append(self.WebSite+str(BuscaLinksOnSites["href"]))
-								print("\033[1;32m[{}]\033[m \033[1;32m[FOUND]\033[m \033[1mLinks dentro do Site: \033[m\033[1;4m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),self.WebSite+BuscaLinksOnSites["href"]))
+								print("\033[1;32m[{}]\033[m \033[1;32m[FOUND]\033[m \033[1mLinks dentro do Site: \033[m\033[1;5m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),self.WebSite+BuscaLinksOnSites["href"]))
 								self.SCANEAR = True
-								sleep(0.2)
+								sleep(0.01)
 						else:
-							print("\033[1m[{}]\033[m \033[1;31m[-]\033[m\033[1m Link Escaneado: {} | \033[1;36mStatus:\033[m\033[1;5;31mDescartado!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),BuscaLinksOnSites["href"]))
-							sleep(0.5)
+							print("\033[1;5;32m[{}]\033[m \033[1;31m[-]\033[m\033[1m Link Escaneado: {} | \033[1;36mStatus:\033[m\033[1;5;31mDescartado!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),BuscaLinksOnSites["href"]))
+							sleep(0.002)
 
 				if self.SCANEAR == True:
 					print("\n\033[1;32m[{}]\033[m \033[1;33m[*]\033[m \033[1mVerificando sublinks nos links encontrandos\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
@@ -442,13 +442,13 @@ class ScannerOnlyWebSite:
 													insereErros.write("Hórario consulta: {}\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
 													insereErros.write("-----------------------------------------------------------\n")
 													insereErros.close()
-												sleep(1.6)
+												sleep(0.8)
 												break
 											else:
 												print("\033[1;33m[{}] \033[m\033[1;33mPágina:\033[m \033[1;36m{}\033[m \033[1m| Status:\033[m \033[1;4;31mNão vulnerável\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),getLINK))
-												sleep(0.8)
-							print("\n{}\033[1;32m[+]\033[m \033[1m Retornando para a home...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-							sleep(1)
+												sleep(0.01)
+							print("\n\033[1;32m[{}]\033[m \033[1;33m[+]\033[m \033[1m Retornando para a home...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+							sleep(2)
 						else:
 							print("\n{}\033[1;32m[*]\033[m \033[1m Na minha filtragem, não encontrei nenhum link com".format(datetime.datetime.now().strftime("%H:%M:%S")))
 							print("{}\033[1;32m[*]\033[m \033[1mParâmetros vulneráveis! Retornando para a home...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
@@ -526,11 +526,11 @@ if __name__ == "__main__":
 				print("\033[1;36m[*]\033[m \033[m\033[1m exemplo de url: https://example.com/ (www and .br-> opcional) \033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),))
 				print("\033[1;36m[*]\033[m \033[m\033[1m Escaneamento completo de site único!\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S"),))
 				UrlSiteUser = str(input("\033[1;31mUrl> \033[m")).strip()
-				ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/\.mg/\.gov/|\.eu/|\.me|\.io)$",str(UrlSiteUser),flags=re.IGNORECASE)
+				ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/\.mg/\.gov/|\.eu/|\.me|\.io|\.pt/|\.tv/)$",str(UrlSiteUser),flags=re.IGNORECASE)
 				while not ValidarUrls:
 					print("\033[1;31m[!]\033[m\033[1m Insira um link válido!\033[m")
 					UrlSiteUser = str(input("\033[1;32m[+]\033[m \033[1m Url: \033[m")).strip()
-					ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/\.mg/\.gov/|\.eu/|\.me|\.io/)$",str(UrlSiteUser),flags=re.IGNORECASE)
+					ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/\.mg/\.gov/|\.eu/|\.me|\.io/|\.pt/|\.tv/)$",str(UrlSiteUser),flags=re.IGNORECASE)
 				if ValidarUrls:
 					EscanearWebSites = ScannerOnlyWebSite(website=UrlSiteUser)
 					EscanearWebSites.ScannerOnlyWebsite()
