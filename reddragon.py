@@ -279,23 +279,27 @@ class ScannerOnlyWebSite:
 				size_links = []
 				for lks in self.ArmazenarContent:
 					size_links.append(lks["href"])
-				print("\033[1;32m[{}]\033[m\033[1m Links encontrados: {}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),size_links))
-		
+				print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Links encontrados: [ {} ]\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),len(size_links)))
 				sleep(1.4)
 				print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Procurando por links com parametros de DB...\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
 				sleep(1.4)
 				for BuscaLinksOnSites in self.ArmazenarContent:
 					if "javascript" not in BuscaLinksOnSites["href"]:
+						if ".php?" in BuscaLinksOnSites["href"]:
+							self.LinksFinalsPHP.append(self.WebSite+str(BuscaLinksOnSites["href"]))
+							print("\033[1;32m[{}]\033[m \033[1;32m[FOUND]\033[m \033[1mLinks dentro do Site: \033[m\033[1;4m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),self.WebSite+BuscaLinksOnSites["href"]))
+							sleep(0.2)
+							self.SCANEAR = True
 						if BuscaLinksOnSites["href"].endswith(".php"):
 							if BuscaLinksOnSites["href"] not in self.LinksFinalsPHP:
 								self.LinksFinalsPHP.append(self.WebSite+str(BuscaLinksOnSites["href"]))
 								print("\033[1;32m[{}]\033[m \033[1;32m[FOUND]\033[m \033[1mLinks dentro do Site: \033[m\033[1;4m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),self.WebSite+BuscaLinksOnSites["href"]))
 								self.SCANEAR = True
-								sleep(0.8)
+								sleep(0.2)
 						else:
 							print("\033[1m[{}]\033[m \033[1;31m[-]\033[m\033[1m Link Escaneado: {} | \033[1;36mStatus:\033[m\033[1;5;31mDescartado!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),BuscaLinksOnSites["href"]))
 							sleep(0.5)
-				raise SystemExit
+
 				if self.SCANEAR == True:
 					print("\n\033[1;32m[{}]\033[m \033[1;33m[*]\033[m \033[1mVerificando sublinks nos links encontrandos\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 					sleep(1)
