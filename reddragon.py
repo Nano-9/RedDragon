@@ -294,13 +294,15 @@ class ScannerOnlyWebSite:
 					if "javascript" not in BuscaLinksOnSites["href"]:
 						if ".php?"  in BuscaLinksOnSites["href"]:
 							self.LinksFinalsPHP.append(self.WebSite+str(BuscaLinksOnSites["href"]))
+							print("\033[1;32m[{}]\033[m \033[1;36m[FOUND]\033[m \033[1mLinks dentro do Site: \033[m\033[1;4m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),self.WebSite+BuscaLinksOnSites["href"]))
 							self.SCANEAR =True
+							sleep(0.2)
 						if BuscaLinksOnSites["href"].endswith(".php"):
 							if BuscaLinksOnSites["href"] not in self.LinksFinalsPHP:
 								self.LinksFinalsPHP.append(self.WebSite+str(BuscaLinksOnSites["href"]))
 								print("\033[1;32m[{}]\033[m \033[1;36m[FOUND]\033[m \033[1mLinks dentro do Site: \033[m\033[1;4m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),self.WebSite+BuscaLinksOnSites["href"]))
 								self.SCANEAR = True
-								sleep(0.8)
+								sleep(0.2)
 						elif ".php?" not in BuscaLinksOnSites["href"]:
 							print("\033[1;32m[{}]\033[m \033[1;31m[-]\033[m\033[1m Link Escaneado: {} | \033[1;36mStatus: \033[m\033[1;5;31mDescartado!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),BuscaLinksOnSites["href"]))
 							sleep(0.4)
