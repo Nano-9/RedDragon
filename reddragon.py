@@ -449,7 +449,7 @@ class ScannerOnlyWebSite:
 												break
 											else:
 												print("\033[1;33m[{}] \033[m\033[1;33mPágina:\033[m \033[1;36m{}\033[m \033[1m| Status:\033[m \033[1;4;31mNão vulnerável\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),getLINK))
-												sleep(0.8)
+												sleep(0.2)
 							print("\n{}\033[1;32m[+]\033[m \033[1m Retornando para a home...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 							sleep(1)
 						else:
