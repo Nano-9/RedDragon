@@ -276,14 +276,20 @@ class ScannerOnlyWebSite:
 				sleep(2)
 				self.ContentSite = bs4.BeautifulSoup(self.ConnectWebSites.text, "html.parser")
 				self.ArmazenarContent = self.ContentSite.find_all("a",href=True)
-				size_links = []
+				self.size_links = []
 				for lks in self.ArmazenarContent:
 					size_links.append(lks["href"])
-				print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Links encontrados: [ {} ]\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),len(size_links)))
-				print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Iniciando escaneamento...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-				sleep(1.4)
-				print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Procurando por links injetáveis...\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
-				sleep(1.4)
+				if len(self.size_links) > 0:
+					print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Links encontrados: [ {} ]\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),len(self.size_links)))
+					print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Iniciando escaneamento...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+					sleep(1.4)
+					print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Procurando por links injetáveis...\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
+					sleep(1.4)
+				else:
+					print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Links encontrados: [ {} ]\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),len(self.size_links)))
+					sleep(1.4)
+					print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Sem links para escanear... \033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+					sleep(1.4)
 				for BuscaLinksOnSites in self.ArmazenarContent:
 					if "javascript" not in BuscaLinksOnSites["href"]:
 						if BuscaLinksOnSites["href"].endswith(".php"):
@@ -454,8 +460,8 @@ class ScannerOnlyWebSite:
 						print("\n\033[1;32m[{}]\033[m \033[1;31m[!]\033[m \033[1m Nenhuma url com paramentros para testes encontrado ...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 						sleep(2)
 				else:
-					print("\n\033[1;32m[{}]\033[m \033[1;31m[!]\033[m\033[1m Não encontrei Sublinks para escanear!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-					sleep(3)
+					print("\033[1;32m[{}]\033[m \033[1;31m[!]\033[m \033[1mVoltando ao menu...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+					sleep(1.1)
 			else:
 				print("\033[1;32m[{}]\033[m \033[1;31m[!]\033[m \033[1;33mNão foi possível estabelecer uma conexão com o site:\033[m \033[1;4m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),self.WebSite))
 				print("\033[1;32m[{}]\033[m \033[1;31m[!]\033[m \033[1;33mE por isso não foi possível localizar sublinks!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
