@@ -29,7 +29,7 @@
     ---------
     pip install -r requirements.txt
     ---------
-    python3 reddragon.py
+    python3 Webscan.py
 
 
 # PROXIMAS ATUALIZAÇÕES APARECERÃO AQUI ABAIXO:
