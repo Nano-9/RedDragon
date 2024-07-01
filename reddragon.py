@@ -109,7 +109,7 @@ class GetDadosUsuario:
 
 		# AQUI RETORNA AS PÁGINAS DE BUSCA
 		self.ResultadosBuscas = self.BuscasPaginasWEB.find_all("a",{"referrerpolicy":"unsafe-url"},href=True)
-		
+
 		for pages in self.ResultadosBuscas:
 			if pages["href"].startswith("https://br.search.yahoo.com/search?p="):
 				self.NumPagesSchsWeb.append(pages["href"])
@@ -276,14 +276,27 @@ class ScannerOnlyWebSite:
 				sleep(2)
 				self.ContentSite = bs4.BeautifulSoup(self.ConnectWebSites.text, "html.parser")
 				self.ArmazenarContent = self.ContentSite.find_all("a",href=True)
+				size_links = []
+				for lks in self.ArmazenarContent:
+					size_links.append(lks["href"])
+				print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Links encontrados: [ {} ]\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),len(size_links)))
+				print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Iniciando escaneamento...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+				sleep(1.4)
+				print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Procurando por links injetáveis...\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
+				sleep(1.4)
 				for BuscaLinksOnSites in self.ArmazenarContent:
 					if "javascript" not in BuscaLinksOnSites["href"]:
 						if BuscaLinksOnSites["href"].endswith(".php"):
 							if BuscaLinksOnSites["href"] not in self.LinksFinalsPHP:
 								self.LinksFinalsPHP.append(self.WebSite+str(BuscaLinksOnSites["href"]))
-								print("\033[1;32m[{}]\033[m \033[1;32m[FOUND]\033[m \033[1mLinks dentro do Site: \033[m\033[1;4m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),self.WebSite+BuscaLinksOnSites["href"]))
+								print("\033[1;32m[{}]\033[m \033[1;36m[FOUND]\033[m \033[1mLinks dentro do Site: \033[m\033[1;4m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),self.WebSite+BuscaLinksOnSites["href"]))
 								self.SCANEAR = True
+								sleep(0.8)
+						else:
+							print("\033[1;32m[{}]\033[m \033[1;31m[-]\033[m\033[1m Link Escaneado: {} | \033[1;36mStatus: \033[m\033[1;5;31mDescartado!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),BuscaLinksOnSites["href"]))
+							sleep(0.4)
 				if self.SCANEAR == True:
+					BanerScan()
 					print("\n\033[1;32m[{}]\033[m \033[1;33m[*]\033[m \033[1mVerificando sublinks nos links encontrandos\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 					sleep(1)
 					print("\033[1;32m[{}]\033[m \033[1;33m[*]\033[m \033[1mBuscando por falhas...\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
@@ -393,7 +406,8 @@ class ScannerOnlyWebSite:
 										else:
 											newtestes.append(p)
 							BanerScan()
-							print("\033[1;32m[*]\033[m \033[1m Iniciando o scaner...\033[m\n")
+							print("\033[1;32m[{}]\033[m \033[1;33m[*]\033[m \033[1m Encontrei [{}] links injetáveis!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),len(newtestes)))
+							print("\033[1;32m[{}]\033[m \033[1;33m[*]\033[m \033[1m Iniciando o scaner...\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
 							sleep(1.1)
 							for getLINK in newtestes:
 								try:
