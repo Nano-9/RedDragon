@@ -37,4 +37,4 @@
 - Atualização dia: 30/06/2024 -> Adição da opção 2 (Escaneamento de site único)
 - Atualização dia: 30/06/2024 -> Correção de bugs!
 - Atualização dia: 01/07/2024 -> Mais saídas adicionadas!
-- Atualização dia: 02/07/2024 -> Wordlists de Dorks adicionadas na opção 1 para a falha SQLinjetcion
+- Atualização dia: 02/07/2024 -> Wordlist de Dorks adicionadas na opção 1 para a falha SQLinjetcion
