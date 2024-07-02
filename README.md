@@ -11,8 +11,7 @@
 ![minha apresentação](https://img.shields.io/static/v1?label=GOOGLE-SEARCH&message=HACKING&color=black&style=<STYLE>&logo=<LOGO>)
 ![minha apresentação](https://img.shields.io/static/v1?label=FAILURES-FOR&message=WEBSITES&color=black&style=<STYLE>&logo=<LOGO>)
 
-![RedDragon](https://github.com/Nano-9/RedDragon/assets/69327287/9678acaf-dc9f-4e63-9808-b9ddc25a7ffc)
-
+![RedDragon](https://github.com/Nano-9/RedDragon/assets/69327287/67eaf619-3406-49f4-9dd5-1033def1ef9c)
 
 # FUNÇÃO DO SCRIPT:
 
@@ -29,7 +28,7 @@
     ---------
     pip install -r requirements.txt
     ---------
-    python3 Webscan.py
+    python3 scan.py
 
 
 # PROXIMAS ATUALIZAÇÕES APARECERÃO AQUI ABAIXO:
