@@ -15,7 +15,7 @@ import bs4
 import fake_useragent
 import datetime
 from time import sleep
-from BanerScan import BanerScan
+from BanerScan import BanerScan, Searching
 
 __AUTOR__ = "NANO"
 __TELEGRAM__ = "https://t.me/rdzin9"
@@ -24,12 +24,13 @@ __VERSIONS__ = 1.0
 class GetDadosUsuario:
 	""" ETAPA 1 """
 
-	def __init__(self,option=False,wordlist=False,dork=False):
+	def __init__(self,option=False,wordlist=False,dork=False,sizes=0):
 		BanerScan()
 		""" CONSTRUÇÃO DA ETAPA 1 """
 		self.option = option
 		self.wordlist = wordlist
 		self.dork = dork
+		self.sizes = sizes
 		self.Requisicao = requests.Session()
 		self.UsersAgent = [fake_useragent.UserAgent()["google chrome"],fake_useragent.UserAgent().ff,fake_useragent.UserAgent().firefox,fake_useragent.UserAgent()["safari"]]
 		self.NumPagesSchsWeb = []
@@ -69,8 +70,14 @@ class GetDadosUsuario:
 			self.RealLinkBuscaDork4 = self.RealLinkBuscaDork3.replace("=","%3D&")
 			self.RealLinkBuscaDork5 = self.RealLinkBuscaDork4
 			self.RealLinkBuscaDork6 = self.RealLinkBuscaDork1+self.RealLinkBuscaDork5
-			print("\033[1;32m[{}]\033[m \033[1;36m[*]\033[m \033[1;33mBuscando com a dork: \033[m\033[1;4m{}\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S"),self.dork))
-
+		elif self.option == "Wordlist":
+			if self.wordlist == True:
+				self.RealLinkBuscaDork2 = self.dork.replace(":","%3A")
+				self.RealLinkBuscaDork3 = self.RealLinkBuscaDork2.replace("?","%3F")
+				self.RealLinkBuscaDork4 = self.RealLinkBuscaDork3.replace("=","%3D&")
+				self.RealLinkBuscaDork5 = self.RealLinkBuscaDork4
+				self.RealLinkBuscaDork6 = self.RealLinkBuscaDork1+self.RealLinkBuscaDork5
+				print("\033[1;32m[{}]\033[m \033[1;36m[*]\033[m \033[1;33mDorks carregadas:\033[m \033[1;4;31m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),self.sizes))
 		self.CookiesGoogle = {
 		"1P_JAR":"2024-06-24-23",
 		"AEC":"AQTF6HxkLdh9L5h_xMUL7yZdFGFmpWDnaCTbE706ZZM9ysby8SgK3A3lPsQ",
@@ -103,7 +110,11 @@ class GetDadosUsuario:
 
 	def GetPagesSearch(self):
 
-		print("\033[1;32m[{}]\033[m \033[1;36m[*]\033[m \033[1;33mBuscas Iniciadas!\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
+		print("\033[1;32m[{}]\033[m \033[1;36m[*]\033[m \033[1;33mBuscas Iniciadas!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+		sleep(2)
+		BanerScan()
+		Searching()
+		print("\033[1;32m[{}]\033[m \033[1;36m[*]\033[m \033[1;33mBuscando com a dork: \033[m\033[1;4m{}\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S"),self.dork))
 		self.IniciarBuscaPage = self.Requisicao.get(self.RealLinkBuscaDork6,headers=self.HeadersChromium,cookies=self.CookiesGoogle,proxies=self.proxy1)
 		self.BuscasPaginasWEB = bs4.BeautifulSoup(self.IniciarBuscaPage.text,"html.parser")
 
@@ -130,7 +141,8 @@ class GetDadosUsuario:
 	def FilterURLForOnline(self):
 		""" OPÇÕES DA ETAPA 1 """
 		BanerScan()
-		print("\n\033[1;32m[{}]\033[m \033[1;36m[*]\033[m \033[1;33mFiltrando url's e verificando se os sites estão online...:\n\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+		Searching()
+		print("\n\033[1;32m[{}]\033[m \033[1;36m[*]\033[m \033[1;33mFiltrando url's e verificando se os sites estão online...\n\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 		for nums, urls in enumerate(self.LinksFiltrados1):
 			try:
 				self.IniciarBusca = self.Requisicao.get(urls,headers=self.HeadersChromium,cookies=self.CookiesGoogle,proxies=self.proxy2)
@@ -173,9 +185,10 @@ class GetDadosUsuario:
 					if TesteFalhas in self.ArmazenarFalhasSQL:
 						print("\033[1;32m[{}]\033[m\033[1;33m [*] Site escaneado:\033[m \033[1m{} | \033[m\033[1;4;36mStatus:\033[m \033[1;32mVulnerável\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),TestesURLfalhas))
 						print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m Armanezando em\033[m\033[1;36m Vulners.txt\033[m")
-						with open("Vulners.txt","a") as AddSQLError:
+						with open("VULNERÁVEIS.txt","a") as AddSQLError:
 							AddSQLError.write("-----------------------------------------------------------\n")
 							AddSQLError.write("Site:"+str(TestesURLfalhas)+"\n")
+							AddSQLError.write("Vulnerabilidade: SQLinjection\n")
 							AddSQLError.write("Horario consulta: {}\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
 							AddSQLError.write("-----------------------------------------------------------\n")
 							AddSQLError.write("\n")
@@ -253,6 +266,8 @@ class ScannerOnlyWebSite:
 		BanerScan()
 		print("\033[1;31m[!]\033[m \033[m Tentando me conectar ao site...\033[m")
 		sleep(1)
+		BanerScan()
+		Searching()
 		""" MÉTODO PARA SE CONECTAR AO SITE E RETORNAR OS LINKS """
 
 		try:
@@ -272,8 +287,9 @@ class ScannerOnlyWebSite:
 		else:
 			if self.ConnectWebSites.status_code == 200:
 				BanerScan()
+				Searching()
 				print("\033[1;33m[*]\033[m\033[m\033[1m Varredura iniciada no site \033[1;36m{}\033[m\033[1m:\033[m\n".format(self.WebSite))
-				sleep(2)
+				sleep(1.4)
 				self.ContentSite = bs4.BeautifulSoup(self.ConnectWebSites.text, "html.parser")
 				self.ArmazenarContent = self.ContentSite.find_all("a",href=True)
 				size_links = []
@@ -301,6 +317,8 @@ class ScannerOnlyWebSite:
 							sleep(0.002)
 
 				if self.SCANEAR == True:
+					BanerScan()
+					Searching()
 					print("\n\033[1;32m[{}]\033[m \033[1;33m[*]\033[m \033[1mVerificando sublinks nos links encontrandos\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 					sleep(1)
 					print("\033[1;32m[{}]\033[m \033[1;33m[*]\033[m \033[1mBuscando por falhas...\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
@@ -410,6 +428,7 @@ class ScannerOnlyWebSite:
 										else:
 											newtestes.append(p)
 							BanerScan()
+							searching()
 							print("\033[1;32m[*]\033[m \033[1m Iniciando o scaner...\033[m\n")
 							sleep(1.1)
 							for getLINK in newtestes:
@@ -433,8 +452,8 @@ class ScannerOnlyWebSite:
 										for ERROSQLi in self.ErrorsSQLi:
 											if ERROSQLi in self.RESULTADOWEBSITES:
 												print("\033[1;33m[{}] \033[m\033[1;33mPágina:\033[m \033[1;36m{}\033[m \033[1m| Status:\033[m \033[1;;4;32mVulnerável!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),getLINK))
-												print("\033[1;32m[{}] \033[m\033[1;33m\033[1;33mSalvando no Arquivo OnlyScan.txt \033[m\033[1;33m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-												with open("OnlyScan.txt","a") as insereErros:
+												#print("\033[1;32m[{}] \033[m\033[1;33m\033[1;33mSalvando no Arquivo OnlyScan.txt \033[m\033[1;33m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+												with open("VULNERÁVEIS.txt","a") as insereErros:
 													insereErros.write("-----------------------------------------------------------\n")
 													insereErros.write("Site: {}\n".format(self.WebSite))
 													insereErros.write("Página vulnerável: {}\n".format(getLINK))
@@ -446,7 +465,7 @@ class ScannerOnlyWebSite:
 												break
 											else:
 												print("\033[1;33m[{}] \033[m\033[1;33mPágina:\033[m \033[1;36m{}\033[m \033[1m| Status:\033[m \033[1;4;31mNão vulnerável\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),getLINK))
-												sleep(0.01)
+												sleep(0.010)
 							print("\n\033[1;32m[{}]\033[m \033[1;33m[+]\033[m \033[1m Retornando para a home...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 							sleep(2)
 						else:
@@ -474,8 +493,7 @@ if __name__ == "__main__":
 \033[1;34m[ 1 ]\033[m\033[1m - Scan de vulnerabilidades\033[m
 \033[1;34m[ 2 ]\033[m\033[1m - Escanear um site\033[m
 \033[1;34m[ 3 ]\033[m\033[1m - Ver Lista de vulnerabilidades\033[m
-\033[1;34m[ 4 ]\033[m\033[1m - Abrir Sites Vulneráveis da opção 1\033[m
-\033[1;34m[ 5 ]\033[m\033[1m - Abrir Sites Vulneráveis da opção 2\033[m
+\033[1;34m[ 4 ]\033[m\033[1m - Abrir Sites Escaneados e vulneráveis\033[m
 \033[1;34m[ X ]\033[m\033[1m - Sair\033[m
 			""")
 		try:
@@ -487,50 +505,66 @@ if __name__ == "__main__":
 			raise SystemExit
 		else:
 			if ChoiceUser == "1":
+				Options = ["y","n"]
 				BanerScan()
 				Vulnerabilidade = str(input("\033[1;32m[+]\033[m\033[1m Escolha a vulnerabilidade: > \033[m")).upper().strip()
 				while Vulnerabilidade not in ListaVulnerabilidades:
 					Vulnerabilidade = str(input("\033[1;32m[+]\033[m\033[1m Escolha a vulnerabilidade: > \033[m")).upper().strip()
-				if Vulnerabilidade == "SQL":
-					DorkUsers = str(input("\033[1;32m[+]\033[m\033[1m Insira sua Dork: > \033[m")).strip()
-					while DorkUsers == "":
-						DorkUsers = str(input("\033[1;31m[+]\033[m\033[1m Insira sua Dork: > \033[m")).strip()
-					IniciarVarredura = GetDadosUsuario(option="-d",wordlist=False,dork=DorkUsers)
-					IniciarVarredura.FiltrarURL()
-					IniciarVarredura.GetPagesSearch()
-					IniciarVarredura.FilterURLForOnline()
-					IniciarVarredura.ExploreSQL()
-					BanerScan()
-				elif Vulnerabilidade == "XSS":
-					BanerScan()
-					print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
-					sleep(2)
-				elif Vulnerabilidade == "PHP":
-					BanerScan()
-					print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
-					sleep(2)
-				elif Vulnerabilidade == "FTP":
-					BanerScan()
-					print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
-					sleep(2)
-				elif Vulnerabilidade == "UPLOADARQUIVO":
-					BanerScan()
-					print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
-					sleep(2)
-				else:
-					BanerScan()
-					print("\033[1;31m[!]\033[m\033[1m Escolha uma opção válida!\033[m")
-					sleep(2)
+				UtilizarDorksWb = str(input("\033[1;32m[+]\033[m\033[1m Utilizar Wordlist de dorks? y/n: ")).lower().strip()
+				while UtilizarDorksWb not in Options:
+					UtilizarDorksWb = str(input("\033[1;32m[+]\033[m\033[1m Utilizar Wordlist de dorks? y/n: ")).lower().strip()
+				if UtilizarDorksWb == "y":
+					size_wordlist = open("DORKS.txt","r").readlines()
+					with open("DORKS.txt","r") as WordlistDk:
+						for DorksWordlist in WordlistDk:
+							DorksBuscas = DorksWordlist.replace("\n","")
+							IniciarBuscasWeb = GetDadosUsuario(option="Wordlist",wordlist=True,dork=DorksBuscas,sizes=len(size_wordlist))
+							IniciarBuscasWeb.FiltrarURL()
+							IniciarBuscasWeb.GetPagesSearch()
+							IniciarBuscasWeb.FilterURLForOnline()
+							IniciarBuscasWeb.ExploreSQL()
+							BanerScan()
+				elif UtilizarDorksWb == "n":
+					if Vulnerabilidade == "SQL":
+						DorkUsers = str(input("\033[1;32m[+]\033[m\033[1m Insira sua Dork: > \033[m")).strip()
+						while DorkUsers == "":
+							DorkUsers = str(input("\033[1;31m[+]\033[m\033[1m Insira sua Dork: > \033[m")).strip()
+						IniciarVarredura = GetDadosUsuario(option="-d",wordlist=False,dork=DorkUsers)
+						IniciarVarredura.FiltrarURL()
+						IniciarVarredura.GetPagesSearch()
+						IniciarVarredura.FilterURLForOnline()
+						IniciarVarredura.ExploreSQL()
+						BanerScan()
+					elif Vulnerabilidade == "XSS":
+						BanerScan()
+						print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
+						sleep(2)
+					elif Vulnerabilidade == "PHP":
+						BanerScan()
+						print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
+						sleep(2)
+					elif Vulnerabilidade == "FTP":
+						BanerScan()
+						print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
+						sleep(2)
+					elif Vulnerabilidade == "UPLOADARQUIVO":
+						BanerScan()
+						print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
+						sleep(2)
+					else:
+						BanerScan()
+						print("\033[1;31m[!]\033[m\033[1m Escolha uma opção válida!\033[m")
+						sleep(2)
 			elif ChoiceUser == "2":
 				BanerScan()
 				print("\033[1;36m[*]\033[m \033[m\033[1m exemplo de url: https://example.com/ (www and .br-> opcional) \033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),))
 				print("\033[1;36m[*]\033[m \033[m\033[1m Escaneamento completo de site único!\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S"),))
 				UrlSiteUser = str(input("\033[1;31mUrl> \033[m")).strip()
-				ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/\.mg/\.gov/|\.eu/|\.me|\.io|\.pt/|\.tv/)$",str(UrlSiteUser),flags=re.IGNORECASE)
+				ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/\.mg/\.gov/|\.eu/|\.me|\.io|\.pt/|\.tv/|\.uk/|\.ga/|\.ac/|\.mk/|\.co/|\.id/|\.net/|\.uk/|\.jp/|\.in/|\.vn/|\.tr/|\.tw/|\.info/)$",str(UrlSiteUser),flags=re.IGNORECASE)
 				while not ValidarUrls:
 					print("\033[1;31m[!]\033[m\033[1m Insira um link válido!\033[m")
 					UrlSiteUser = str(input("\033[1;32m[+]\033[m \033[1m Url: \033[m")).strip()
-					ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/\.mg/\.gov/|\.eu/|\.me|\.io/|\.pt/|\.tv/)$",str(UrlSiteUser),flags=re.IGNORECASE)
+					ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/\.mg/\.gov/|\.eu/|\.me|\.io/|\.pt/|\.tv/|\.uk/|\.ga/|\.ac/|\.mk/|\.co/|\.id/|\.net/|\.uk/|\.jp/|\.in/|\.vn/|\.tr/|\.tw/|\.info/)$",str(UrlSiteUser),flags=re.IGNORECASE)
 				if ValidarUrls:
 					EscanearWebSites = ScannerOnlyWebSite(website=UrlSiteUser)
 					EscanearWebSites.ScannerOnlyWebsite()
@@ -554,8 +588,8 @@ if __name__ == "__main__":
 				caminho = os.getcwd()
 				find = False
 				for files in os.listdir(str(caminho)):
-					if files == "Vulners.txt":
-						with open("Vulners.txt","r") as SQLreader:
+					if files == "VULNERÁVEIS.txt":
+						with open("VULNERÁVEIS.txt","r") as SQLreader:
 							for VULN in SQLreader:
 								print(VULN.replace("\n",""))
 							find = True
@@ -565,24 +599,8 @@ if __name__ == "__main__":
 				if find == False:
 					input("\n\033[1;31m[*]\033[m\033[1m Você não tem sites vulneráveis ainda! Enter para voltar ao menu... \033[m")
 
-			elif ChoiceUser == "5":
-				BanerScan()
-				finder = False
-				print("\n\033[1;31m[*]\033[m\033[1m SITES ESCANEADOS:\n\033[m")
-				caminho2 = os.getcwd()
-				for arq in os.listdir(str(caminho2)):
-					if arq == "OnlyScan.txt":
-						with open("OnlyScan.txt","r") as ScanReader:
-							for St in ScanReader:
-								print(St.replace("\n",""))
-							finder = True
-							ScanReader.close()
-				if finder == False:
-					input("\n\033[1;31m[*]\033[m\033[1m Sites escaneados e vulneráveis, aparecerão aqui! Enter para voltar ao menu... \033[m")
-				else:
-					input("\n\033[1;31m[*]\033[m\033[1m Enter para voltar ao menu... \033[m")
-
 			elif ChoiceUser == "x":
 				BanerScan()
 				print("\n\033[1;31m[*]\033[m\033[1m Saindo...\033[m")
 				sys.exit()
+#.
