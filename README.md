@@ -1,4 +1,4 @@
-<h1 align="center"
+![IMG_20240703_142942_143](https://github.com/Nano-9/RedDragon/assets/69327287/7b4320ad-abd5-4866-928d-1efcb24e81b4)<h1 align="center"
 <p>
   RED DRAGON:
 </p></h1>
@@ -11,7 +11,8 @@
 ![minha apresentação](https://img.shields.io/static/v1?label=GOOGLE-SEARCH&message=HACKING&color=black&style=<STYLE>&logo=<LOGO>)
 ![minha apresentação](https://img.shields.io/static/v1?label=FAILURES-FOR&message=WEBSITES&color=black&style=<STYLE>&logo=<LOGO>)
 
-![RedDragon](https://github.com/Nano-9/RedDragon/assets/69327287/67eaf619-3406-49f4-9dd5-1033def1ef9c)
+![IMG_20240703_142942_143](https://github.com/Nano-9/RedDragon/assets/69327287/31f59443-3ca3-4f86-b912-c74f4b3ac423)
+
 
 # FUNÇÃO DO SCRIPT:
 
