@@ -1,10 +1,8 @@
+#-------------------------------------------------------------
 # Dúvidas?   | \
 # Ideias?    |    Me chame no telegram: https://t.me/rdzin9
 # Bugs?      | /
-
-# Projeto ainda não finalizado!
-# Algumas opções, ainda serão implantadas!
-# Estou escrevendo ele ainda, qualquer erro, me reportem!
+#-------------------------------------------------------------
 
 import os
 import sys
@@ -182,7 +180,7 @@ class GetDadosUsuario:
 					if TesteFalhas in self.ArmazenarFalhasSQL:
 						print("\033[1;32m[{}]\033[m\033[1;33m [*] Site escaneado:\033[m \033[1m{} | \033[m\033[1;4;36mStatus:\033[m \033[1;32mVulnerável\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),TestesURLfalhas))
 						print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m Armanezando em\033[m\033[1;36m Vulners.txt\033[m")
-						with open("VULNERÁVEIS.txt","a") as AddSQLError:
+						with open("VULNERAVEIS.txt","a") as AddSQLError:
 							AddSQLError.write("-----------------------------------------------------------\n")
 							AddSQLError.write("Site:"+str(TestesURLfalhas)+"\n")
 							AddSQLError.write("Vulnerabilidade: SQLinjection\n")
@@ -447,7 +445,7 @@ class ScannerOnlyWebSite:
 											if ERROSQLi in self.RESULTADOWEBSITES:
 												print("\033[1;33m[{}] \033[m\033[1;33mPágina:\033[m \033[1;36m{}\033[m \033[1m| Status:\033[m \033[1;;4;32mVulnerável!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),getLINK))
 												#print("\033[1;32m[{}] \033[m\033[1;33m\033[1;33mSalvando no Arquivo OnlyScan.txt \033[m\033[1;33m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-												with open("VULNERÁVEIS.txt","a") as insereErros:
+												with open("VULNERAVEIS.txt","a") as insereErros:
 													insereErros.write("-----------------------------------------------------------\n")
 													insereErros.write("Site: {}\n".format(self.WebSite))
 													insereErros.write("Página vulnerável: {}\n".format(getLINK))
@@ -481,13 +479,11 @@ class ScannerOnlyWebSite:
 if __name__ == "__main__":
 
 	while True:
-		ListaVulnerabilidades = ["SQL","XSS","PHP","FTP","UPLOADARQUIVO"]
 		BanerScan()
 		print("""
 \033[1;34m[ 1 ]\033[m\033[1m - Scan de vulnerabilidades\033[m
 \033[1;34m[ 2 ]\033[m\033[1m - Escanear um site\033[m
-\033[1;34m[ 3 ]\033[m\033[1m - Ver Lista de vulnerabilidades\033[m
-\033[1;34m[ 4 ]\033[m\033[1m - Abrir Sites Escaneados e vulneráveis\033[m
+\033[1;34m[ 3 ]\033[m\033[1m - Abrir Sites Escaneados e vulneráveis\033[m
 \033[1;34m[ X ]\033[m\033[1m - Sair\033[m
 			""")
 		try:
@@ -501,11 +497,9 @@ if __name__ == "__main__":
 			if ChoiceUser == "1":
 				Options = ["y","n"]
 				BanerScan()
-				Vulnerabilidade = str(input("\033[1;32m[+]\033[m\033[1m Escolha a vulnerabilidade: > \033[m")).upper().strip()
-				while Vulnerabilidade not in ListaVulnerabilidades:
-					Vulnerabilidade = str(input("\033[1;32m[+]\033[m\033[1m Escolha a vulnerabilidade: > \033[m")).upper().strip()
-				UtilizarDorksWb = str(input("\033[1;32m[+]\033[m\033[1m Utilizar Wordlist de dorks? y/n: ")).lower().strip()
+				UtilizarDorksWb = str(input("\033[1;32m[+]\033[m\033[1m Utilizar Wordlist de dorks para buscar mais sites? y/n: ")).lower().strip()
 				while UtilizarDorksWb not in Options:
+					print("\033[1;31m[!]\033[m\033[1m Insira uma opção válida!\033[m")
 					UtilizarDorksWb = str(input("\033[1;32m[+]\033[m\033[1m Utilizar Wordlist de dorks? y/n: ")).lower().strip()
 				if UtilizarDorksWb == "y":
 					size_wordlist = open("DORKS.txt","r").readlines()
@@ -529,26 +523,6 @@ if __name__ == "__main__":
 						IniciarVarredura.FilterURLForOnline()
 						IniciarVarredura.ExploreSQL()
 						BanerScan()
-					elif Vulnerabilidade == "XSS":
-						BanerScan()
-						print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
-						sleep(2)
-					elif Vulnerabilidade == "PHP":
-						BanerScan()
-						print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
-						sleep(2)
-					elif Vulnerabilidade == "FTP":
-						BanerScan()
-						print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
-						sleep(2)
-					elif Vulnerabilidade == "UPLOADARQUIVO":
-						BanerScan()
-						print("\033[1;31m[!]\033[m\033[1m Vulnerabilidade não configurada! Voltando... \033[m")
-						sleep(2)
-					else:
-						BanerScan()
-						print("\033[1;31m[!]\033[m\033[1m Escolha uma opção válida!\033[m")
-						sleep(2)
 			elif ChoiceUser == "2":
 				BanerScan()
 				print("\033[1;36m[*]\033[m \033[m\033[1m exemplo de url: https://example.com/ (www and .br-> opcional) \033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),))
@@ -565,25 +539,12 @@ if __name__ == "__main__":
 					BanerScan()
 			elif ChoiceUser == "3":
 				BanerScan()
-				print("\033[1;31m[*]\033[m\033[1m Vulnerabilidades que o script irá buscar:\033[m")
-				print("""
-\033[1m[ Verde já foi implementado ]\033[m
-
-\033[1;32m[*]\033[m\033[1m - SQL\033[m
-\033[1;31m[*]\033[m\033[1m - XSS\033[m
-\033[1;31m[*]\033[m\033[1m - PHP\033[m
-\033[1;31m[*]\033[m\033[1m - UPLOAD ARQUIVOS\033[m
-\033[1;31m[*]\033[m\033[1m - COOKIES\033[m
-				""")
-				input("\033[1;31m[*]\033[m\033[1m Enter para voltar ao menu... \033[m")
-			elif ChoiceUser == "4":
-				BanerScan()
 				print("\n\033[1;31m[*]\033[m\033[1m Sites escaneados e vulneráveis:\n\033[m")
 				caminho = os.getcwd()
 				find = False
 				for files in os.listdir(str(caminho)):
-					if files == "VULNERÁVEIS.txt":
-						with open("VULNERÁVEIS.txt","r") as SQLreader:
+					if files == "VULNERAVEIS.txt":
+						with open("VULNERAVEIS.txt","r") as SQLreader:
 							for VULN in SQLreader:
 								print(VULN.replace("\n",""))
 							find = True
@@ -597,4 +558,5 @@ if __name__ == "__main__":
 				BanerScan()
 				print("\n\033[1;31m[*]\033[m\033[1m Saindo...\033[m")
 				sys.exit()
+
 #.
