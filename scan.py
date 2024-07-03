@@ -422,7 +422,7 @@ class ScannerOnlyWebSite:
 										else:
 											newtestes.append(p)
 							BanerScan()
-							searching()
+							Searching()
 							print("\033[1;32m[*]\033[m \033[1m Iniciando o scaner...\033[m\n")
 							sleep(1.1)
 							for getLINK in newtestes:
