@@ -50,7 +50,6 @@ class GetDadosUsuario:
 		"sintaxe SQL",
 		"SINTAXE SQL",
 		"MySql",
-		"mysql_fetch"'
 		"Warning: mysql_connect()"
 		]
 		self.HeadersChromium = {'UserAgent':self.UsersAgent[random.randint(0,3)],"'referer'":"'https://www.google.com/'"}
@@ -225,10 +224,7 @@ class ScannerOnlyWebSite:
 		"sintaxe SQL",
 		"SINTAXE SQL",
 		"MySql",
-		"Fatal Error",
-		"Fatal error",
-		"fatal error",
-		"function fetch"
+		"Warning: mysql_connect()"
 		]
 		self.MORE = False
 
