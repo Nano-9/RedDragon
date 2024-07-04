@@ -16,10 +16,10 @@
 
 # FUNÇÃO DO SCRIPT:
 
-- Utiliza a Dork que o usuário passar para fazer as pesquisas dos sites
-- Encontra sites vulneráveis as seguintes falhas: SQL, XSS, PHP, UPLOAD FILES
-- Atualmente está implementado a falha: SQLinjection
-- Logo logo estarão todas implementadas!
+- Utiliza a Dork que o usuário pode passar para fazer as pesquisas dos sites
+- Por padrão ele utiliza wordlist com Dorks para pesquisas caso o usuário escolha utilizar uma wordlist!
+- Retorna falhas SQLinjection
+- Todos os sites vulneráveis descobertos, ficarão salvos no arquivo de texto chamado VULNERAVEIS.txt
 
 # COMO UTILIZAR O SCRIPT:
 
