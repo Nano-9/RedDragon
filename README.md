@@ -1,4 +1,4 @@
-<p>
+<p align="center">
   RED DRAGON:
 </p></h1>
 
