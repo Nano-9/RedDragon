@@ -1,4 +1,3 @@
-![IMG_20240703_142942_143](https://github.com/Nano-9/RedDragon/assets/69327287/7b4320ad-abd5-4866-928d-1efcb24e81b4)<h1 align="center"
 <p>
   RED DRAGON:
 </p></h1>
