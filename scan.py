@@ -140,7 +140,7 @@ class GetDadosUsuario:
 		print("\n\033[1;32m[{}]\033[m \033[1;36m[*]\033[m \033[1;33mFiltrando url's e verificando se os sites estão online...\n\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 		for nums, urls in enumerate(self.LinksFiltrados1):
 			try:
-				self.IniciarBusca = self.Requisicao.get(urls,headers=self.HeadersChromium,cookies=self.CookiesGoogle,proxies=self.proxy2)
+				self.IniciarBusca = self.Requisicao.get(urls,headers=self.HeadersChromium,cookies=self.CookiesGoogle)
 			except requests.exceptions.SSLError:
 				print("\033[1;31m[{}] \033[m\033[1;31m[SSLerrors]\033[m \033[1;31mSite\033[m\033[1m:\033[m \033[1;31m{} |\033[m \033[1;31mCom problemas de conexão SSL!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),urls))
 			except requests.exceptions.ConnectionError:
