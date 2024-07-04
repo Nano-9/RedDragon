@@ -513,16 +513,15 @@ if __name__ == "__main__":
 							IniciarBuscasWeb.ExploreSQL()
 							BanerScan()
 				elif UtilizarDorksWb == "n":
-					if Vulnerabilidade == "SQL":
-						DorkUsers = str(input("\033[1;32m[+]\033[m\033[1m Insira sua Dork: > \033[m")).strip()
-						while DorkUsers == "":
-							DorkUsers = str(input("\033[1;31m[+]\033[m\033[1m Insira sua Dork: > \033[m")).strip()
-						IniciarVarredura = GetDadosUsuario(option="-d",wordlist=False,dork=DorkUsers)
-						IniciarVarredura.FiltrarURL()
-						IniciarVarredura.GetPagesSearch()
-						IniciarVarredura.FilterURLForOnline()
-						IniciarVarredura.ExploreSQL()
-						BanerScan()
+					DorkUsers = str(input("\033[1;32m[+]\033[m\033[1m Insira sua Dork: > \033[m")).strip()
+					while DorkUsers == "":
+						DorkUsers = str(input("\033[1;31m[+]\033[m\033[1m Insira sua Dork: > \033[m")).strip()
+					IniciarVarredura = GetDadosUsuario(option="-d",wordlist=False,dork=DorkUsers)
+					IniciarVarredura.FiltrarURL()
+					IniciarVarredura.GetPagesSearch()
+					IniciarVarredura.FilterURLForOnline()
+					IniciarVarredura.ExploreSQL()
+					BanerScan()
 			elif ChoiceUser == "2":
 				BanerScan()
 				print("\033[1;36m[*]\033[m \033[m\033[1m exemplo de url: https://example.com/ (www and .br-> opcional) \033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),))
