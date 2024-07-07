@@ -409,6 +409,264 @@ class ScannerOnlyWebSite:
 										elif "page_id=" in AditionalLinks["href"].lower():
 												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
 												self.MORE = True
+										elif "pid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "message_id=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "act=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "groupid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "bd=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "iddesc=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "news_id=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "table=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "lotid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "p=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "module=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "lan=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "product_no=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "magid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "prodid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "cat_id=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "code=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "bookid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "cid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "title=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "userid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "idcategory=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "xid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "idcd=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "site=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "iid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "page=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "section=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "chnum=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "i=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "modus=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "ref=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "cpath=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "proj_nr=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "url=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "t=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "acticle_id=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "w=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "view=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "noticia=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "intprodid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "idcategory=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "store_id" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "ref=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "nr=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "c=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "sid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "profileid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "no=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "type=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "tid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "rangeid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "area_id=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "cart=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "code_no=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "event_id=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "eventid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "show=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "reply=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "panier=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "pr=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "sku=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "****=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "start=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "topic=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "siteid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "site_id=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "****id1=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "press_release_id=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "a=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "action=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "action=itemid&pid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "itype=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "offs=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "data=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "typeboard=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "doc=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "gubun=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "ps_db=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "num=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "cont=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "viewtype=category&categoryid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "keyword=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "search_id" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "isbn=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
+										elif "articleid=" in AditionalLinks["href"].lower():
+												self.LinksFinalsTests.append(self.WebSite+(str(AditionalLinks["href"])))
+												self.MORE = True
 						if self.MORE == True:
 							newtestes = []
 							for p in self.LinksFinalsTests:
@@ -557,5 +815,4 @@ if __name__ == "__main__":
 				BanerScan()
 				print("\n\033[1;31m[*]\033[m\033[1m Saindo...\033[m")
 				sys.exit()
-
 #.
