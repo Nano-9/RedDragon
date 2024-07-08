@@ -1,4 +1,13 @@
-inurl:.gov.php?id=
+site:.gov inurl:index.php?id=
+site:.gov inurl:item.php?id=
+site:.gov.uk inurl:index.php?id=
+site:.gov.uk inurl:php?id=
+site:.ng inurl:index.php?id=
+site:.org inurl:.php?news=
+site:.org inurl:.php?id=
+site:.org inurl:.php?item_id=
+site:.gov inurl:.php?cat=
+site:.gov inurl:.php?id=
 inurl:.org.php?id=
 inurl:.gov.php?cat=
 intitle:prefeitura inurl:.php?id=
