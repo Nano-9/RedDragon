@@ -257,7 +257,7 @@ class ScannerOnlyWebSite:
 	def ScannerOnlyWebsite(self):
 		BanerScan()
 		print("\033[1;31m[!]\033[m \033[m Tentando me conectar ao site...\033[m")
-		sleep(1)
+		sleep(0.2)
 		BanerScan()
 		Searching()
 		""" MÉTODO PARA SE CONECTAR AO SITE E RETORNAR OS LINKS """
@@ -281,16 +281,16 @@ class ScannerOnlyWebSite:
 				BanerScan()
 				Searching()
 				print("\033[1;33m[*]\033[m\033[m\033[1m Varredura iniciada no site \033[1;36m{}\033[m\033[1m:\033[m\n".format(self.WebSite))
-				sleep(1.4)
+				sleep(0.4)
 				self.ContentSite = bs4.BeautifulSoup(self.ConnectWebSites.text, "html.parser")
 				self.ArmazenarContent = self.ContentSite.find_all("a",href=True)
 				size_links = []
 				for lks in self.ArmazenarContent:
 					size_links.append(lks["href"])
 				print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Links encontrados: [ {} ]\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),len(size_links)))
-				sleep(1.4)
+				sleep(0.2)
 				print("\033[1;32m[{}]\033[m\033[1;33m [*]\033[m\033[1m Procurando por links com parametros de DB...\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
-				sleep(1.4)
+				sleep(0.2)
 				for BuscaLinksOnSites in self.ArmazenarContent:
 					if "javascript" not in BuscaLinksOnSites["href"]:
 						if ".php?" in BuscaLinksOnSites["href"]:
@@ -303,16 +303,16 @@ class ScannerOnlyWebSite:
 								self.LinksFinalsPHP.append(self.WebSite+str(BuscaLinksOnSites["href"]))
 								print("\033[1;32m[{}]\033[m \033[1;32m[FOUND]\033[m \033[1mLinks dentro do Site: \033[m\033[1;5m{}\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),self.WebSite+BuscaLinksOnSites["href"]))
 								self.SCANEAR = True
-								sleep(0.01)
+								sleep(0.02)
 						else:
 							print("\033[1;5;32m[{}]\033[m \033[1;31m[-]\033[m\033[1m Link Escaneado: {} | \033[1;36mStatus:\033[m\033[1;5;31mDescartado!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),BuscaLinksOnSites["href"]))
-							sleep(0.002)
+							sleep(0.1)
 
 				if self.SCANEAR == True:
 					BanerScan()
 					Searching()
-					print("\n\033[1;32m[{}]\033[m \033[1;33m[*]\033[m \033[1mVerificando sublinks nos links encontrandos\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-					sleep(1)
+					print("\n\033[1;32m[{}]\033[m \033[1;33m[*]\033[m \033[1mVerificando sublinks nos links encontrados\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+					sleep(0.1)
 					print("\033[1;32m[{}]\033[m \033[1;33m[*]\033[m \033[1mBuscando por falhas...\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
 
 					self.MORE = False
@@ -324,19 +324,19 @@ class ScannerOnlyWebSite:
 							except requests.exceptions.SSLError:
 								print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mSite com problemas de conexão SSL!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 								print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mPulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-								sleep(2)
+								sleep(0.4)
 							except requests.exceptions.ConnectionError:
 								print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mSite com problemas de conexão!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 								print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mPulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-								sleep(2)
+								sleep(0.4)
 							except requests.exceptions.Timeout:
 								print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mTempo limite de conexão excedido!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 								print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mPulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-								sleep(2)
+								sleep(0.4)
 							except requests.exceptions.RequestException:
 								print("\n\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mSite instável!\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 								print("\033[1;33m[{}] \033[m\033[1;31m[!]\033[m \033[mPulando...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
-								sleep(2)
+								sleep(0.4)
 							else:
 								if self.GetConnectWeb1.status_code == 200:
 									self.GetMoreLinksSameWebSite = bs4.BeautifulSoup(self.GetConnectWeb1.text, "html.parser")
@@ -670,17 +670,15 @@ class ScannerOnlyWebSite:
 						if self.MORE == True:
 							newtestes = []
 							for p in self.LinksFinalsTests:
-								validandotudo = re.search(r"^(http://|https://){1}(.)+(id\=[0-9]+|cat\=[0-9]+|catid\=[0-9]+|itemid\=[0-9]+|order_id\=[0-9]+|item_id\=[0-9]+|artist\=[0-9]+)$",p,flags=re.IGNORECASE)
-								if validandotudo:
-									if "aspx" not in p:
-										if p in newtestes:
-											pass
-										else:
-											newtestes.append(p)
+								if "aspx" not in p:
+									if p in newtestes:
+										pass
+									else:
+										newtestes.append(p)
 							BanerScan()
 							Searching()
 							print("\033[1;32m[*]\033[m \033[1m Iniciando o scaner...\033[m\n")
-							sleep(1.1)
+							sleep(0.1)
 							for getLINK in newtestes:
 								try:
 									self.CONECTANDOSITESUB = self.Connect.get(getLINK+"'",headers=self.HeardersW,verify=True,cookies=self.CookieJs,proxies=self.Proxies1,timeout=self.Timeout)
@@ -711,16 +709,16 @@ class ScannerOnlyWebSite:
 													insereErros.write("Hórario consulta: {}\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
 													insereErros.write("-----------------------------------------------------------\n")
 													insereErros.close()
-												sleep(0.8)
+												sleep(0.4)
 												break
 											else:
 												print("\033[1;33m[{}] \033[m\033[1;33mPágina:\033[m \033[1;36m{}\033[m \033[1m| Status:\033[m \033[1;4;31mNão vulnerável\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),getLINK))
-												sleep(0.010)
+												sleep(0.01)
 							print("\n\033[1;32m[{}]\033[m \033[1;33m[+]\033[m \033[1m Retornando para a home...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 							sleep(2)
 						else:
 							print("\n{}\033[1;32m[*]\033[m \033[1m Na minha filtragem, não encontrei nenhum link com".format(datetime.datetime.now().strftime("%H:%M:%S")))
-							print("{}\033[1;32m[*]\033[m \033[1mParâmetros vulneráveis! Retornando para a home...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
+							print("{}\033[1;32m[*]\033[m \033[1m Parâmetros vulneráveis! Retornando para a home...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
 							sleep(2)
 					elif len(self.LinksFinalsPHP) == 0:
 						print("\n\033[1;32m[{}]\033[m \033[1;31m[!]\033[m \033[1m Nenhuma url com paramentros para testes encontrado ...\033[m".format(datetime.datetime.now().strftime("%H:%M:%S")))
