@@ -23,7 +23,7 @@
 
 # COMO UTILIZAR O SCRIPT:
 
-    git clone: https://github.com/lucas-Dk/RedDragon
+    git clone: https://github.com/nano-9/RedDragon
     ---------
     cd RedDragon
     ---------
