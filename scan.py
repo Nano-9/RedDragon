@@ -128,10 +128,10 @@ class GetDadosUsuario:
 			self.Data = self.Htmls2.find_all("a",{"referrerpolicy":"origin"},href=True)
 
 			for LinkSitesWeb in self.Data:
-				#self.LinksParaTestes.append(LinkSitesWeb["href"])
-				validlinkf = re.search(r"^(http://|https://){1}(.)+(id\=[0-9]+|cat\=[0-9]+)$",str(LinkSitesWeb["href"]),re.IGNORECASE)
+				validlinkf = re.search(r"^(http://|https://){1}(.)+(=[a-zA-Z0-9]+)$",str(LinkSitesWeb["href"]),re.IGNORECASE)
 				if validlinkf:
-					self.LinksFiltrados1.append(LinkSitesWeb["href"])
+					if "aspx" not in str(LinkSitesWeb["href"]):
+						self.LinksFiltrados1.append(LinkSitesWeb["href"])
 
 	def FilterURLForOnline(self):
 		""" OPÇÕES DA ETAPA 1 """
