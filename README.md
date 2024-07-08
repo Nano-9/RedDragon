@@ -39,3 +39,6 @@
 - Atualização dia: 30/06/2024 -> Correção de bugs!
 - Atualização dia: 01/07/2024 -> Mais saídas adicionadas!
 - Atualização dia: 02/07/2024 -> Wordlist de Dorks adicionadas na opção 1 para a falha SQLinjetcion
+- Atualização dia: 08/07/2024 -> Foi adicionado mais filtros e removidos limitações!
+- Atualização dia: 08/07/2024 -> Foi adicionado nas 2 opção de Scanner, regex com filtros mais abrangentes!
+- Atualização dia: 08/07/2024 -> Foi adicionado mais Dorks na wordlist, ao selecionar Y na opção 1, encontrará mais sites
