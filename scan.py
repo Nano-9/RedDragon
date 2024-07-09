@@ -783,11 +783,11 @@ if __name__ == "__main__":
 				print("\033[1;36m[*]\033[m \033[m\033[1m exemplo de url: https://example.com/ (www and .br-> opcional) \033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),))
 				print("\033[1;36m[*]\033[m \033[m\033[1m Escaneamento completo de site único!\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S"),))
 				UrlSiteUser = str(input("\033[1;31mUrl> \033[m")).strip()
-				ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/|\.mg/|\.gov/|\.eu/|\.me/|\.io/|\.pt/|\.tv/|\.uk/|\.ga/|\.ac/|\.mk/|\.co/|\.id/|\.net/|\.uk/|\.jp/|\.in/|\.vn/|\.tr/|\.tw/|\.info/|\.pk/|\.ng/|\.my/|\.sy/|\.bd/|\.cn/|\.gh/|\.se/|\.cyb|\.bbs/|\.geek/|\.chan/|\.vc/|\.pirate/|\.libre/|\.neo/|\.parody/)$",str(UrlSiteUser),flags=re.IGNORECASE)
+				ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/|\.mg/|\.gov/|\.eu/|\.me/|\.io/|\.pt/|\.tv/|\.uk/|\.ga/|\.ac/|\.mk/|\.co/|\.id/|\.net/|\.uk/|\.jp/|\.in/|\.vn/|\.tr/|\.tw/|\.info/|\.pk/|\.ng/|\.my/|\.sy/|\.bd/|\.cn/|\.gh/|\.se/|\.cyb|\.bbs/|\.geek/|\.chan/|\.vc/|\.pirate/|\.libre/|\.neo/|\.parody/|\.xxx/)$",str(UrlSiteUser),flags=re.IGNORECASE)
 				while not ValidarUrls:
 					print("\033[1;31m[!]\033[m\033[1m Insira um link válido!\033[m")
 					UrlSiteUser = str(input("\033[1;32m[+]\033[m \033[1m Url: \033[m")).strip()
-					ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/|\.mg/|\.gov/|\.eu/|\.me/|\.io/|\.pt/|\.tv/|\.uk/|\.ga/|\.ac/|\.mk/|\.co/|\.id/|\.net/|\.uk/|\.jp/|\.in/|\.vn/|\.tr/|\.tw/|\.info/|\.pk/|\.ng/|\.my/|\.sy/|\.bd/|\.cn/|\.gh/|\.se/|\.cyb/|\.bss/|\.geek/|\.chan/|\.vc/|\.pirate/|\.libre/|\.neo/|\.parody/)$",str(UrlSiteUser),flags=re.IGNORECASE)
+					ValidarUrls = re.search(r"^(http://|https://){1}(www\.)?([a-zA-Z0-9\-\_])+.+(\.com/|\.br/|\.ch/|\.edu/|\.su/|\.org/|\.sp/|\.mg/|\.gov/|\.eu/|\.me/|\.io/|\.pt/|\.tv/|\.uk/|\.ga/|\.ac/|\.mk/|\.co/|\.id/|\.net/|\.uk/|\.jp/|\.in/|\.vn/|\.tr/|\.tw/|\.info/|\.pk/|\.ng/|\.my/|\.sy/|\.bd/|\.cn/|\.gh/|\.se/|\.cyb/|\.bss/|\.geek/|\.chan/|\.vc/|\.pirate/|\.libre/|\.neo/|\.parody/|\.xxx/)$",str(UrlSiteUser),flags=re.IGNORECASE)
 				if ValidarUrls:
 					EscanearWebSites = ScannerOnlyWebSite(website=UrlSiteUser)
 					EscanearWebSites.ScannerOnlyWebsite()
