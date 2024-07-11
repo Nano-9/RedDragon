@@ -152,7 +152,7 @@ class GetDadosUsuario:
 	def ExploreSQL(self):
 		""" EXPLORANDO AS FALHAS SQLinjection """
 		BanerScan()
-		print("\n\033[1;32m[{}]\033[m\033[1;32m [*]\033[m \033[1;33mRealizando testes...\033[m:\n\033[m")
+		print("\n\033[1;32m[{}]\033[m\033[1;32m [*]\033[m \033[1;33mRealizando testes...\033[m:\n\033[m".fornat(datetime.datetime.now().strftime("%H:%M:%S")))
 		print("\033[1;32m[{}]\033[m\033[1;36m [*]\033[m \033[1mSites filtrados:\033[m \033[1;33m[{}]\033[m".format(datetime.datetime.now().strftime("%H:%M:%S"),len(self.LinksFiltrados2)))
 		print("\033[1;32m[{}]\033[m\033[1;36m [*]\033[m \033[1mEscaneando código da página...\033[m\n".format(datetime.datetime.now().strftime("%H:%M:%S")))
 		sleep(2)
